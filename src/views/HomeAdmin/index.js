@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import HomeDashboard from "./home";
-import Preloader from "../../modules/Preloader";
+import Preloader from "../../components/Preloader";
 import { GET_USER } from "../../constants/";
 import AdminLoginPage from "../AdminLoginPage";
 import { request } from "../../helpers/requests";

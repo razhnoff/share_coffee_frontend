@@ -2,15 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import { timeConverter, letterTransform, checkerProp, secConverter } from "../../../helpers/helpers";
 
-const List = ({ events }) => {
-    const userEvents = [...events];
+const COUNT_OF_ITEMS_TO_SHOW = 3;
+
+const List = ({ data }) => {
+    const userEvents = [...data];
     userEvents.sort((a, b) => {
         return a.date - b.date;
     });
     return (
-        <>
-            {events.length === 0 ? (
-                <ul className="event-List" key={events.length}>
+        <div className="list">
+            {data.length === 0 ? (
+                <ul className="event-List" key={data.length}>
                     <div className="event-item">
                         <h4 className="event_title">No confirmed events</h4>
                         <p className="event_place">Check your telegram account</p>
@@ -19,7 +21,7 @@ const List = ({ events }) => {
             ) : (
                 <ul className="event-List">
                     {userEvents.map((item, id) => {
-                        if (id < 3) {
+                        if (id < COUNT_OF_ITEMS_TO_SHOW) {
                             return (
                                 <div className="event-item" key={id}>
                                     <h4 className="event_title">
@@ -43,16 +45,16 @@ const List = ({ events }) => {
                     })}
                 </ul>
             )}
-        </>
+        </div>
     );
 };
 
 List.propTypes = {
-    events: PropTypes.array
+    data: PropTypes.array
 };
 
 List.defaultProps = {
-    events: []
+    data: []
 };
 
 export default List;

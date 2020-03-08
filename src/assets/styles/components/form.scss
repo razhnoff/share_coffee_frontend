@@ -52,16 +52,6 @@
 
 }
 
-.js-form__err-animation {
-  animation: shake 150ms ease-in-out;
-}
-
-.form__error-wrapper {
-  justify-content: center;
-  max-width: calc(100% - 2em);
-  margin: 20px auto 1em;
-}
-
 .form__error,
 .form__ban {
   background-color: #FB4F4F;
@@ -86,19 +76,4 @@
 .js-form__err--password-wrong .form__error--wrong-password,
 .js-form__err--field-missing .form__error--field-missing {
   display: inline-block;
-}
-
-@keyframes shake {
-  0% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(10px);
-  }
-  75% {
-    transform: translateX(-10px);
-  }
-  100% {
-    transform: translateX(0);
-  }
 }

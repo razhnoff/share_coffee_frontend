@@ -5,7 +5,7 @@ import UserTopics from "./userTopics";
 import UserInfo from "./userInfo";
 //import UserLogs from "./userLogs";
 import { request } from "../../../helpers/requests";
-import PageTitle from "../../../modules/PageTitle";
+import PageTitle from "../../../components/PageTitle";
 import * as URL from "../../../constants";
 import Header from "../../../components/Header";
 import md5 from "js-md5";
