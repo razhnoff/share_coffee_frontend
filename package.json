@@ -28,16 +28,16 @@
         "tiny-cookie": "2.3.1"
     },
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
+        "start": "mode=development react-app-rewired start",
+        "build": "mode=production react-app-rewired build",
+        "test": "react-app-rewired test",
         "eject": "react-scripts eject",
-        "lint": "eslint --fix ./src --ext .js",
+        "lint": "eslint --fix ./src .storybook --ext .js",
         "predeploy": "npm run build",
         "deploy": "gh-pages -d build",
         "storybook": "start-storybook -p 6006",
         "build-storybook": "build-storybook",
-        "reinstall": "rm -rf node_modules package-lock.json && npm install"
+        "reinstall": "rm -rf node_modules && npm install"
     },
     "browserslist": {
         "production": [
@@ -57,26 +57,32 @@
         "@babel/plugin-transform-runtime": "^7.8.3",
         "@babel/preset-env": "7.8.4",
         "@babel/preset-react": "7.8.3",
-        "@storybook/addon-actions": "5.3.13",
-        "@storybook/addon-links": "5.3.13",
+        "@storybook/addon-actions": "^5.3.13",
+        "@storybook/addon-links": "^5.3.13",
         "@storybook/addons": "5.3.13",
+        "@storybook/preset-create-react-app": "^1.5.2",
         "@storybook/react": "5.3.13",
-        "axios-mock-adapter": "1.17.0",
         "babel-eslint": "^10.0.3",
         "babel-loader": "8.0.6",
+        "babel-plugin-import": "^1.13.0",
+        "babel-preset-react-app": "^9.1.1",
         "eslint": "6.8.0",
         "eslint-loader": "^3.0.3",
         "eslint-plugin-import": "^2.20.1",
         "eslint-plugin-prettier": "^3.1.2",
         "eslint-plugin-react": "^7.18.3",
+        "file-loader": "^5.1.0",
         "husky": "^4.2.3",
         "lint-staged": "^10.0.7",
+        "miragejs": "0.1.35",
         "prettier": "1.19.1",
         "prop-types": "15.7.2",
+        "react-app-rewired": "^2.1.5",
+        "resolve-url-loader": "^3.1.1",
         "storybook-react-router": "1.0.8",
-        "webpack": "^4.41.5",
-        "webpack-cli": "^3.3.11",
-        "webpack-dev-server": "^3.10.2"
+        "webpack": "4.41.5",
+        "webpack-cli": "3.3.11",
+        "webpack-dev-server": "3.10.2"
     },
     "husky": {
         "hooks": {

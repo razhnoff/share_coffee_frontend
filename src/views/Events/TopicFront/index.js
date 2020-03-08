@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import EventMap from "../../../events/components/EventMap";
+import EventMap from "../../../components/EventMap";
 import { getCookie } from "tiny-cookie";
-import PageTitle from "../../../modules/PageTitle";
+import PageTitle from "../../../components/PageTitle";
 import SpinButton from "../../../components/SpinButton";
-import { Button } from "../../../components/Button";
+import Button from "../../../components/Button";
 import parser from "html-react-parser";
-import Preloader from "../../../modules/Preloader";
+import Preloader from "../../../components/Preloader";
 
 import { subscribeUserToTopic, unsubsrcibeUserFromTopic, getDataEvent, getSubscription } from "../helpers.js";
 

@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import InfoAboutEvent from "../../modules/InfoAboutEvent";
-import PageTitle from "../../../modules/PageTitle";
+import PageTitle from "../../../components/PageTitle";
 import EventName from "../../modules/EventName";
 import SpinButton from "../../../components/SpinButton";
 import { Link } from "react-router-dom";

@@ -1,5 +1,6 @@
 import React from "react";
 import { FOOTER_TITLE } from "../../constants";
+import "./scss/Footer.scss";
 
 const Footer = () => {
     return (

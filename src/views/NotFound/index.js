@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Header from "../../components/Header";
-import { Button } from "../../components/Button";
+import Button from "../../components/Button";
 
 const NotFound = props => {
     //test data

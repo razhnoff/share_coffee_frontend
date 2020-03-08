@@ -8,7 +8,7 @@ import ErrorMessage from "../../../components/ErrorMessage";
 import TopicEditor from "../../../components/TopicEditor";
 import * as URL from "../../../constants";
 import { request } from "../../../helpers/requests";
-import PageTitle from "../../../modules/PageTitle";
+import PageTitle from "../../../components/PageTitle";
 
 class TopicCreate extends Component {
     constructor(props) {

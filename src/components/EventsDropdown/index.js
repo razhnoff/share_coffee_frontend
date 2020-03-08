@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import List from "./List";
-// import { ReactComponent as ArrowIcon } from "../../icons/Arrow.svg";
+import "./scss/EventsDropdown.scss";
 
 /**
  * Dropdown component for showing user events
@@ -9,34 +9,36 @@ import List from "./List";
  * example:
  * [{name: "name1", place: "place1", time:"1st September"}, {name: "name2", place: "place2", time:"1st September"}]
  */
-const EventsDropdown = ({ events }) => {
+const ARROW_ICON = "↓";
+
+const EventsDropdown = ({ data }) => {
     const [isOpened, setIsOpened] = useState(false);
 
     return (
         <div
+            className="event-list_container"
             onMouseLeave={() => {
                 setIsOpened(false);
-            }}
-            className="event-list_container">
+            }}>
             <button
                 className="event-header"
                 onClick={() => {
                     setIsOpened(!isOpened);
                 }}>
-                <span>My upcoming events ({events.length})</span>
-                <span className={`event-arrow ${isOpened ? "event-rotated" : ""}`}>↓</span>
+                <span>My upcoming events ({data.length})</span>
+                <span className={`event-arrow ${isOpened ? "event-rotated" : ""}`}>{ARROW_ICON}</span>
             </button>
-            {isOpened && (
-                <div className="list">
-                    <List events={events} />{" "}
-                </div>
-            )}
+            {isOpened && <List data={data} />}
         </div>
     );
 };
 
 EventsDropdown.propTypes = {
-    events: PropTypes.array
+    data: PropTypes.array.isRequired
+};
+
+EventsDropdown.defaultProps = {
+    data: []
 };
 
 export default EventsDropdown;

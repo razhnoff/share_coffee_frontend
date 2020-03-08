@@ -4,7 +4,7 @@ import EventDesc from "../../../events/components/EventDesc";
 import { getCookie } from "tiny-cookie";
 import { Switch, Route } from "react-router-dom";
 import TopicFront from "../TopicFront";
-import Preloader from "../../../modules/Preloader";
+import Preloader from "../../../components/Preloader";
 import {
     getAllTopics,
     getAllUserSubscriptions,

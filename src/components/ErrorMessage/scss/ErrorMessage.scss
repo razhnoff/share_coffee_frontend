@@ -1,0 +1,25 @@
+.form__error-wrapper {
+  justify-content: center;
+  max-width: calc(100% - 2em);
+  margin: 20px auto 1em;
+  font-family: 'Roboto', sans-serif;
+}
+
+.js-form__err-animation {
+  animation: shake 150ms ease-in-out;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

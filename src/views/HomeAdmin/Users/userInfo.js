@@ -1,6 +1,6 @@
 import React from "react";
 import Proptypes from "prop-types";
-import { Button } from "../../../components/Button";
+import Button from "../../../components/Button";
 
 const Topics = ({ user, toggleAdmin, toggleBan }) => {
     return (

@@ -1,30 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import styles from "./styles.module.scss";
+import styles from "./scss/Button.module.scss";
 
-export const Button = ({ value, onClick, disabled, type }) => {
+const Button = ({ value, onClick, disabled, type }) => {
     const ClassName = classNames({
         [styles.subscribe]: type === "Subscribe",
         [styles.unsubscribe]: type === "Unsubscribe",
-        [styles.primary]: type === "primary",
-        [styles.logout]: type === "logout"
+        [styles.primary]: type === "Primary",
+        [styles.logout]: type === "Logout"
     });
 
     return (
-        <button className={`${styles.section__btn} ${ClassName}`} onClick={onClick} disabled={disabled} type={type}>
+        <button className={`${styles.section__btn} ${ClassName}`} onClick={onClick} disabled={disabled}>
             {value}
         </button>
     );
 };
 
+export default Button;
+
 Button.propTypes = {
     value: PropTypes.node,
-    onClick: PropTypes.func,
+    onClick: PropTypes.func.isRequired,
     disabled: PropTypes.bool,
     type: PropTypes.string
 };
 
 Button.defaultProps = {
-    type: "primary"
+    type: "Primary"
 };

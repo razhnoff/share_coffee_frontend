@@ -1,15 +1,15 @@
 import React, { Component, Fragment } from "react";
-import PageTitle from "../../modules/PageTitle";
+import PageTitle from "../../components/PageTitle";
 // eslint-disable-next-line no-unused-vars
 import TelegramLoginButton from "../../helpers/TelegramLoginButton";
-import SectionInfo from "../../modules/SectionInfo";
+import SectionInfo from "../../components/SectionInfo";
 import { setCookie } from "tiny-cookie";
 import Header from "../../components/Header";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { setStorage, router } from "../../helpers/helpers";
-import Preloader from "../../modules/Preloader";
-import { Button } from "../../components/Button";
+import Preloader from "../../components/Preloader";
+import Button from "../../components/Button";
 //import { SET_USER_DATA } from "../../constants";
 //import ErrorMessage from "../../components/ErrorMessage";
 //import BanMsg from "../../components/BanMsg";

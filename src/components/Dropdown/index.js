@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import List from "./List";
-import { ReactComponent as DropdownArrowIcon } from "../../assets/icons/DropdownArrow.svg";
+import "./scss/Dropdown.scss";
+import { ReactComponent as DropdownArrowIcon } from "./assets/DropdownArrow.svg";
 
 let timeOutId = null;
 
@@ -28,7 +29,7 @@ const Dropdown = ({ options, selectedValue, onSelect }) => {
                     setIsOpened(false);
                 });
             }}
-            className={`department-dropdown_container ${isOpened ? "department-focused" : undefined}`}>
+            className={`department-dropdown_container ${isOpened ? "department-focused" : ""}`}>
             <div tabIndex="0" className="department-selection" onClick={() => setIsOpened(!isOpened)}>
                 {selection}
                 <DropdownArrowIcon className={`department-arrow ${isOpened ? "department-rotated" : undefined}`} />

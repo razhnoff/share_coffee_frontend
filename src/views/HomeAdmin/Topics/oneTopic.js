@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import TopicEditer from "./topicEditer";
 import { Tab, TabContainer } from "../../../ui/core/home";
-import PageTitle from "../../../modules/PageTitle";
+import PageTitle from "../../../components/PageTitle";
 import { request } from "../../../helpers/requests";
 import Header from "../../../components/Header";
 import * as URL from "../../../constants";

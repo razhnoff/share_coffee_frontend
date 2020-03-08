@@ -6,7 +6,7 @@ import Users from "./Users";
 import Teams from "./Teams";
 import Header from "../../components/Header";
 import { checkerProp } from "../../helpers/helpers";
-import PageTitle from "../../modules/PageTitle";
+import PageTitle from "../../components/PageTitle";
 
 class HomeDashboard extends Component {
     constructor(props) {

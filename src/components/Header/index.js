@@ -1,14 +1,15 @@
 import React, { useEffect, useState, Fragment } from "react";
 import PropTypes from "prop-types";
-import logo from "../../assets/img/logo.svg";
-import defaultUser from "../../assets/img/defaultUser.png";
-import { Button } from "../Button";
+import axios from "axios";
+import { removeCookie, getCookie } from "tiny-cookie";
+// import { Link } from "react-router-dom";
+import logo from "./assets/logo.svg";
+import defaultUser from "./assets/defaultUser.png";
+import Button from "../Button";
 import EventsDropDown from "../EventsDropdown";
 import { SERVER } from "../../constants";
-import { removeCookie, getCookie } from "tiny-cookie";
-import { Link } from "react-router-dom";
-import axios from "axios";
 import { checkerProp } from "../../helpers/helpers";
+import "./scss/Header.scss";
 
 const getUpcomingEvents = userId => {
     const token = getCookie("token");
@@ -39,30 +40,23 @@ const logOut = location => {
     location.history.replace("/");
 };
 
-const AdminNavigation = ({ avatar, name, location }) => {
-    // if (checkerProp(avatar)) {
-    //     avatar = defaultUser;
-    // }
-    // if (checkListSuperAdmin()) {
-    //     name = "Admin";
-    // }
+const AdminNavigation = ({ avatar, fullName, location }) => {
     return (
         <div className="header-nav">
             <img className="header-user__img" src={avatar} alt="avatar" />
-            <span className="header-user__info">{name}</span>
-            <Button text="Log out" type="logout" onClick={() => logOut(location)} />
+            <span className="header-user__info">{fullName}</span>
+            <Button value="Log out" type="Logout" onClick={() => logOut(location)} />
         </div>
     );
 };
 
-const UserNavigation = ({ avatar, name, surName, userEvents, location, hasDepartment }) => {
-    // if (checkerProp(avatar)) {
-    //     avatar = defaultUser;
-    // }
-    let fullName = `${name} ${surName}`;
-    if (checkerProp(name) || checkerProp(surName)) {
-        fullName = "user";
+const UserNavigation = ({ avatar, name, surName, events, location, hasDepartment }) => {
+    if (checkerProp(avatar)) {
+        avatar = defaultUser;
     }
+
+    const fullName = checkerProp(name) || checkerProp(surName) ? "User" : `${name} ${surName}`;
+
     return (
         <Fragment>
             {hasDepartment ? (
@@ -70,23 +64,47 @@ const UserNavigation = ({ avatar, name, surName, userEvents, location, hasDepart
                     <div className="header-nav">
                         <img className="header-user__img" src={avatar} alt="avatar" />
                         <span className="header-user__info">{fullName}</span>
-                        <Button text={"Log out"} type="logout" onClick={() => logOut(location)} />
+                        <Button value={"Log out"} type="Logout" onClick={() => logOut(location)} />
                     </div>
                     <div className="header__dropdown">
-                        <EventsDropDown events={userEvents} />
+                        <EventsDropDown data={events} />
                     </div>
                 </div>
             ) : (
                 <div className="header-nav">
-                    <Button text={"Log out "} type="logout" onClick={() => logOut(location)} />
+                    <Button value={"Log out"} type="Logout" onClick={() => logOut(location)} />
                 </div>
             )}
         </Fragment>
     );
 };
 
-const Header = ({ name, isActive, avatar, surName, location, isAdmin, hasDepartment }) => {
-    const [userEvents, setUserEvents] = useState([]);
+const HeaderNavigation = ({ hasDepartment, name, surName, location, events, avatar, permissionStatus }) => {
+    if (permissionStatus.superAdmin) {
+        return <AdminNavigation location={location} />;
+    }
+
+    const fullName = `${name} ${surName}`;
+
+    if (permissionStatus.admin) {
+        return <AdminNavigation fullName={fullName} location={location} avatar={avatar} />;
+    }
+
+    return (
+        <UserNavigation
+            hasDepartment={hasDepartment}
+            name={name}
+            avatar={avatar}
+            surName={surName}
+            location={location}
+            events={events}
+        />
+    );
+};
+
+const Header = ({ name, isActive, avatar, surName, location, hasDepartment, permissionStatus }) => {
+    const [events, setUserEvents] = useState([]);
+
     useEffect(() => {
         const hasId = checkerProp(sessionStorage.getItem("id"));
         const fetchData = async () => {
@@ -104,28 +122,22 @@ const Header = ({ name, isActive, avatar, surName, location, isAdmin, hasDepartm
         <div className="header">
             <div className="header__container">
                 <div className="logo_header">
-                    <Link to="/" title="Home">
-                        <img src={logo} alt="coffee" />
-                    </Link>
+                    {/*<Link to="/" title="Home">*/}
+                    <img src={logo} alt="coffee" />
+                    {/*</Link>*/}
                     <span>SHARE & COFFEE</span>
                 </div>
-                {isActive ? (
-                    <Fragment>
-                        {isAdmin === "2" ? (
-                            <AdminNavigation name={name} avatar={avatar} location={location} />
-                        ) : (
-                            // `${props.isAdmin === "1" ? userNavigation()}`
-                            <UserNavigation
-                                hasDepartment={hasDepartment}
-                                name={name}
-                                avatar={avatar}
-                                surName={surName}
-                                location={location}
-                                userEvents={userEvents}
-                            />
-                        )}
-                    </Fragment>
-                ) : null}
+                {isActive && (
+                    <HeaderNavigation
+                        name={name}
+                        hasDepartment={hasDepartment}
+                        surName={surName}
+                        events={events}
+                        avatar={avatar}
+                        location={location}
+                        permissionStatus={permissionStatus}
+                    />
+                )}
             </div>
         </div>
     );
@@ -134,18 +146,18 @@ const Header = ({ name, isActive, avatar, surName, location, isAdmin, hasDepartm
 AdminNavigation.propTypes = {
     location: PropTypes.object,
     avatar: PropTypes.string,
-    name: PropTypes.string
+    fullName: PropTypes.string
 };
 
 AdminNavigation.defaultProps = {
     avatar: defaultUser,
-    name: "Admin"
+    fullName: "Admin"
 };
 
 UserNavigation.propTypes = {
     ...AdminNavigation.propTypes,
     surName: PropTypes.string,
-    userEvents: PropTypes.array,
+    events: PropTypes.array,
     hasDepartment: PropTypes.bool
 };
 
@@ -153,10 +165,18 @@ UserNavigation.defaultProp = {
     avatar: defaultUser
 };
 
+HeaderNavigation.propTypes = {
+    ...UserNavigation.propTypes,
+    isActive: PropTypes.bool.isRequired,
+    permissionStatus: PropTypes.shape({
+        admin: PropTypes.bool,
+        superAdmin: PropTypes.bool
+    }).isRequired
+};
+
 Header.propTypes = {
     ...UserNavigation.propTypes,
-    isActive: PropTypes.bool,
-    isAdmin: PropTypes.string
+    ...HeaderNavigation.propTypes
 };
 
 export default Header;

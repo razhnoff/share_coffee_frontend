@@ -1,0 +1,133 @@
+.section__btn {
+  position: relative;
+  padding: 6px 20px;
+  min-width: 168px;
+  outline: none;
+  box-sizing: border-box;
+  border-radius: 20px;
+  background: none;
+  font: 18px/normal "Roboto";
+  line-height: 21px;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: default;
+    background-color: transparent;
+  }
+}
+
+.primary {
+  color: #0064FF;
+  border: 2px solid rgba(0, 100, 255, 0.3);
+  // width: 222px;
+
+  &:hover:enabled {
+    background: #0064FF;
+    color: #FFFFFF;
+  }
+}
+
+.logout {
+  min-width: unset;
+  padding: 9px 20px;
+  padding-right: 0;
+  border: none;
+  width: auto;
+  border-radius: 0;
+  color: #323232;
+
+  &:hover:enabled {
+    cursor: pointer;
+    background: none;
+    color: rgb(50, 50, 50);
+  }
+}
+
+.subscribe {
+  border: 2px solid rgba(0, 180, 100, 0.3);
+  color: #00B464;
+
+  &:hover:enabled {
+    background: #00B464;
+    border: 2px solid rgba(0, 180, 100, 0.3);
+    color: #FFFFFF;
+  }
+}
+
+.subscribe,
+.unsubscribe {
+  outline: none;
+  padding: 6px 20px;
+  min-width: 168px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.unsubscribe {
+  color: #FF0032;
+  border: none;
+
+  &:hover:enabled {
+    background: none;
+    border: none;
+    opacity: 0.5;
+    color: #FF0032;
+  }
+}
+
+.dots {
+  position: absolute;
+  right: 0;
+  left: 0;
+
+  span {
+    display: inline-block;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+
+    &:not(:first-child) {
+      margin-left: 5px;
+    }
+  }
+
+  @for $i from 0 through 3 {
+    $t: $i * 0.15;
+    span:nth-child(#{$i}) {
+      animation: move 0.2s ease-in-out (#{$t}s) infinite alternate;
+    }
+  }
+}
+
+.greenDots {
+  span {
+    background-color: #00B464;
+  }
+}
+
+.redDots {
+  span {
+    background-color: #FF0032;
+  }
+}
+
+@keyframes move {
+  from {
+    transform: translateY(-5px);
+  }
+  to {
+    transform: translateY(5px);
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}

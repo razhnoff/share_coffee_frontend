@@ -3,15 +3,15 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import Dropdown from "../../components/Dropdown";
-import { Button } from "../../components/Button";
-import SectionInfo from "../../modules/SectionInfo";
-import PageTitle from "../../modules/PageTitle";
+import Button from "../../components/Button";
+import SectionInfo from "../../components/SectionInfo";
+import PageTitle from "../../components/PageTitle";
 import Header from "../../components/Header";
 import { getCookie } from "tiny-cookie";
 import { checkerProp } from "../../helpers/helpers";
 import { SET_USER_DEPARTMENT, GET_ALL_DEPARTMENTS } from "../../constants";
 //import { checkTokenTime, checkIsBanned } from "../../helpers/requests";
-import Preloader from "../../modules/Preloader";
+import Preloader from "../../components/Preloader";
 
 const getAccountOptions = departments => {
     return departments.map(department => {
