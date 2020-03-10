@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import EventMap from "../../../components/EventMap";
+import EventMap from "../../../components/Map";
 import { getCookie } from "tiny-cookie";
 import PageTitle from "../../../components/PageTitle";
 import SpinButton from "../../../components/SpinButton";
@@ -171,7 +171,7 @@ class TopicFront extends Component {
                         <div className="time__descr">
                             <h3 className="section__topic__title">Time:</h3>
                             <p className="time__descr">
-                                // Todo refactor this
+                                {/*// Todo refactor this*/}
                                 {/*{this.state.eventData.cyclic*/}
                                 {/*    ? `Every ${regularity[this.state.eventData.weekDay]}, ${*/}
                                 {/*        checkerProp(this.state.eventData.time)*/}

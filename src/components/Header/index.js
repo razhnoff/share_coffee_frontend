@@ -2,10 +2,11 @@ import React, { useEffect, useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { removeCookie, getCookie } from "tiny-cookie";
-// import { Link } from "react-router-dom";
-import logo from "./assets/logo.svg";
-import defaultUser from "./assets/defaultUser.png";
+import { Link } from "react-router-dom";
+import logo from "../../assets/icons/logo.svg";
+import defaultUser from "../../assets/icons/defaultUser.png";
 import Button from "../Button";
+import { DEFAULT } from "../Button/constants";
 import EventsDropDown from "../EventsDropdown";
 import { SERVER } from "../../constants";
 import { checkerProp } from "../../helpers/helpers";
@@ -45,7 +46,9 @@ const AdminNavigation = ({ avatar, fullName, location }) => {
         <div className="header-nav">
             <img className="header-user__img" src={avatar} alt="avatar" />
             <span className="header-user__info">{fullName}</span>
-            <Button value="Log out" type="Logout" onClick={() => logOut(location)} />
+            <Button type={DEFAULT} onClick={() => logOut(location)}>
+                {"Log out"}
+            </Button>
         </div>
     );
 };
@@ -64,7 +67,9 @@ const UserNavigation = ({ avatar, name, surName, events, location, hasDepartment
                     <div className="header-nav">
                         <img className="header-user__img" src={avatar} alt="avatar" />
                         <span className="header-user__info">{fullName}</span>
-                        <Button value={"Log out"} type="Logout" onClick={() => logOut(location)} />
+                        <Button type={DEFAULT} onClick={() => logOut(location)}>
+                            {"Log out"}
+                        </Button>
                     </div>
                     <div className="header__dropdown">
                         <EventsDropDown data={events} />
@@ -72,7 +77,9 @@ const UserNavigation = ({ avatar, name, surName, events, location, hasDepartment
                 </div>
             ) : (
                 <div className="header-nav">
-                    <Button value={"Log out"} type="Logout" onClick={() => logOut(location)} />
+                    <Button type={DEFAULT} onClick={() => logOut(location)}>
+                        {"Log out"}
+                    </Button>
                 </div>
             )}
         </Fragment>
@@ -122,9 +129,9 @@ const Header = ({ name, isActive, avatar, surName, location, hasDepartment, perm
         <div className="header">
             <div className="header__container">
                 <div className="logo_header">
-                    {/*<Link to="/" title="Home">*/}
-                    <img src={logo} alt="coffee" />
-                    {/*</Link>*/}
+                    <Link to="/" title="Home">
+                        <img src={logo} alt="coffee" />
+                    </Link>
                     <span>SHARE & COFFEE</span>
                 </div>
                 {isActive && (
@@ -167,7 +174,6 @@ UserNavigation.defaultProp = {
 
 HeaderNavigation.propTypes = {
     ...UserNavigation.propTypes,
-    isActive: PropTypes.bool.isRequired,
     permissionStatus: PropTypes.shape({
         admin: PropTypes.bool,
         superAdmin: PropTypes.bool
@@ -176,7 +182,8 @@ HeaderNavigation.propTypes = {
 
 Header.propTypes = {
     ...UserNavigation.propTypes,
-    ...HeaderNavigation.propTypes
+    ...HeaderNavigation.propTypes,
+    isActive: PropTypes.bool.isRequired
 };
 
 export default Header;
