@@ -1,56 +1,66 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import List from "./List";
+import { find, isEmpty, isNull } from "lodash-es";
 import "./scss/Dropdown.scss";
-import { ReactComponent as DropdownArrowIcon } from "./assets/DropdownArrow.svg";
-
-let timeOutId = null;
-
-const getLabelByValue = (options, value) => {
-    const option = (options || []).find(item => item.value === value);
-
-    return option.label;
-};
+import Button from "../Button";
+import { DEFAULT } from "../Button/constants";
+import { ReactComponent as DropdownArrowIcon } from "../../assets/icons/DropdownArrow.svg";
 
 /**
  * Atomic dropdown component
  * @param options (array of label-value objects)
- * example: [{label: "label1", value: "value1"}, {label: "label2", value: "value2"}]
+ * example: [{label: "label1", id: "value1"}, {label: "label2", id: "value2"}]
  */
-const Dropdown = ({ options, selectedValue, onSelect }) => {
+
+const Dropdown = ({ options, value, defaultValue, onChange }) => {
     const [isOpened, setIsOpened] = useState(false);
-    const selection = selectedValue ? getLabelByValue(options, selectedValue) : "Select department";
+    const selectedValue = getLabelById(options, value, defaultValue);
+
+    const handleClick = item => {
+        console.warn(item);
+        onChange(item);
+        setIsOpened(false);
+    };
+
+    const filteredOptions = options.filter(item => item.label !== selectedValue);
 
     return (
-        <div
-            onFocus={() => clearTimeout(timeOutId)}
-            onBlur={() => {
-                timeOutId = setTimeout(() => {
-                    setIsOpened(false);
-                });
-            }}
-            className={`department-dropdown_container ${isOpened ? "department-focused" : ""}`}>
-            <div tabIndex="0" className="department-selection" onClick={() => setIsOpened(!isOpened)}>
-                {selection}
-                <DropdownArrowIcon className={`department-arrow ${isOpened ? "department-rotated" : undefined}`} />
+        <div className={`department-dropdown_container ${isOpened && "department-focused"}`}>
+            <div className="department-selection" onClick={() => setIsOpened(!isOpened)}>
+                {selectedValue}
+                <DropdownArrowIcon className={`department-arrow ${isOpened ? "department-rotated" : ""}`} />
             </div>
             {isOpened && (
-                <List
-                    onItemClick={value => {
-                        onSelect(value);
-                        setIsOpened(false);
-                    }}
-                    options={options}
-                />
+                <div className="department-list">
+                    {filteredOptions.map(({ label, id }) => (
+                        <Button
+                            key={id}
+                            type={DEFAULT}
+                            onClick={() => {
+                                handleClick(label);
+                            }}>
+                            {label}
+                        </Button>
+                    ))}
+                </div>
             )}
         </div>
     );
 };
 
+function getLabelById(options, value, defaultValue) {
+    return isEmpty(value) || isNull(value) ? defaultValue : find(options, item => item.label === value).label;
+}
+
+Dropdown.defaultProps = {
+    options: []
+};
+
 Dropdown.propTypes = {
-    selectedValue: PropTypes.string,
-    onSelect: PropTypes.func,
-    options: PropTypes.array
+    value: PropTypes.string,
+    onChange: PropTypes.func,
+    options: PropTypes.array,
+    defaultValue: PropTypes.string
 };
 
 export default Dropdown;

@@ -4,6 +4,7 @@ import "./scss/PageTitle.scss";
 
 const PageTitle = ({ title, description, mouseOver, mouseOut, click, withShadowContainer }) => {
     const styleCheck = mouseOver ? "main__header__link" : "main__header";
+
     return (
         <Fragment>
             <div className="main">

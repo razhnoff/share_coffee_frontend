@@ -81,3 +81,32 @@
 //   .add("topic create page", () => {
 //     return <TopicCreate />;
 //   });
+
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import styles from "./scss/styles.module.scss";
+
+export const AppDecorator = props => {
+    return (
+        <BrowserRouter>
+            <div className={styles.wrapper}>{props.children}</div>
+        </BrowserRouter>
+    );
+};
+
+export const CustomDecorator = props => {
+    return (
+        <AppDecorator>
+            <div style={{ display: "flex", justifyContent: "center" }}>{props.children}</div>
+        </AppDecorator>
+    );
+};
+
+AppDecorator.propTypes = {
+    children: PropTypes.node
+};
+
+CustomDecorator.propTypes = {
+    children: PropTypes.node
+};

@@ -1,12 +1,14 @@
 import React from "react";
+import { AppDecorator } from "../../stories";
 import Header from "./";
 
 export default {
     title: "Components|Header",
-    component: Header
+    component: Header,
+    decorators: [storyFn => <AppDecorator>{storyFn()}</AppDecorator>]
 };
 
-const avatar = "https://content.onliner.by/news/970x485/b15e9c2f198ab2401f7751f43f6e9cfa.jpeg";
+const avatar = "https://avatars1.githubusercontent.com/u/8328764?s=460&v=4";
 
 export const Default = () => {
     return (
@@ -24,8 +26,8 @@ export const Default = () => {
 export const HeaderDepartment = () => {
     return (
         <Header
-            hasDepartment={false}
             isActive={true}
+            hasDepartment={false}
             name={"Maksim"}
             surName={"Razhnov"}
             avatar={avatar}
@@ -37,11 +39,11 @@ export const HeaderDepartment = () => {
 export const HeaderUser = () => {
     return (
         <Header
-            hasDepartment={true}
             isActive={true}
-            avatar={avatar}
+            hasDepartment={true}
             name={"Maksim"}
             surName={"Razhnov"}
+            avatar={avatar}
             permissionStatus={{ superAdmin: false, admin: false }}
         />
     );
@@ -56,13 +58,13 @@ export const HeaderSuperAdmin = () => {
         <Header
             isActive={true}
             hasDepartment={true}
+            name={"Maksim"}
+            surName={"Razhnov"}
+            avatar={avatar}
             permissionStatus={{
                 superAdmin: true,
                 admin: false
             }}
-            avatar={avatar}
-            name={"Maksim"}
-            surName={"Razhnov"}
         />
     );
 };
@@ -72,10 +74,10 @@ export const HeaderAdmin = () => {
         <Header
             isActive={true}
             hasDepartment={true}
-            permissionStatus={{ superAdmin: false, admin: true }}
-            avatar={avatar}
             name={"Maksim"}
             surName={"Razhnov"}
+            avatar={avatar}
+            permissionStatus={{ superAdmin: false, admin: true }}
         />
     );
 };

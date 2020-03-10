@@ -14,11 +14,11 @@ const getClassName = messageType => {
     }
 };
 
-const ErrorMessage = ({ type, value }) => {
+const ErrorMessage = ({ type, value, ...rest }) => {
     const className = getClassName(type);
 
     return (
-        <div className={"form__error-wrapper js-form__err-animation"}>
+        <div className={"form__error-wrapper js-form__err-animation"} {...rest}>
             <p className={className}>{value}</p>
         </div>
     );
