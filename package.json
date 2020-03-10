@@ -34,7 +34,7 @@
         "predeploy": "npm run build",
         "deploy": "gh-pages -d build",
         "storybook": "start-storybook -p 6006",
-        "build-storybook": "build-storybook",
+        "build-storybook": "build-storybook -c .storybook -o .out",
         "reinstall": "rm -rf node_modules && npm install"
     },
     "browserslist": {
