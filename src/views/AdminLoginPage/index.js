@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import md5 from "js-md5";
 import ErrorMessage from "../../components/ErrorMessage";
 import { request } from "../../helpers/requests";
-import SpinButton from "../../components/SpinButton";
+// import SpinButton from "../../components/SpinButton";
 import { setCookie } from "tiny-cookie";
 import jwtDecode from "jwt-decode";
 import { setStorage } from "../../helpers/helpers";
@@ -80,7 +80,7 @@ class AdminLoginPage extends Component {
                                 placeholder="Password"
                             />
 
-                            <SpinButton onClick={e => this.login(e)} text="Log in" isLoading={isLoading} />
+                            {/*<SpinButton onClick={e => this.login(e)} text="Log in" isLoading={isLoading} />*/}
                         </form>
                     </div>
                 </div>

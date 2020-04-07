@@ -5,7 +5,7 @@ import TimeChooser from "./TimeChooser";
 import TopicDescription from "../TopicDescription";
 import CyclicChooser from "./CyclicChooser";
 import Button from "../Button";
-import SpinButton from "../SpinButton";
+// import SpinButton from "../SpinButton";
 
 import api from "./api";
 
@@ -190,7 +190,7 @@ class TopicEditor extends Component {
 
                 <div className={styles.topic_editor_buttons}>
                     <Button type="Unsubscribe" text="Cancel" onClick={this.onCancel} />
-                    <SpinButton type="Subscribe" text="Save" onClick={this.onSave} />
+                    {/*<SpinButton type="Subscribe" text="Save" onClick={this.onSave} />*/}
                 </div>
             </div>
         );

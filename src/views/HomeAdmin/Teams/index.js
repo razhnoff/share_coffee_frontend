@@ -4,7 +4,7 @@ import { request } from "../../../helpers/requests";
 import ErrorMessage from "../../../components/ErrorMessage";
 import Button from "../../../components/Button";
 import * as URL from "../../../constants";
-import SpinButton from "../../../components/SpinButton";
+// import SpinButton from "../../../components/SpinButton";
 import { Loading } from "../../../ui/components/Loader";
 
 class DeleteBtn extends Component {
@@ -61,7 +61,7 @@ class DeleteBtn extends Component {
                     <div>
                         Are you sure you want to delete?
                         <Button onClick={this.clear} text="Cancel" type="Unsubscribe" />
-                        <SpinButton onClick={() => this.delete(this.props.id)} text="Delete" isLoading={isLoading} />
+                        {/*<SpinButton onClick={() => this.delete(this.props.id)} text="Delete" isLoading={isLoading} />*/}
                     </div>
                 )}
             </div>
@@ -181,7 +181,7 @@ class Teams extends Component {
                         />
                         <div className="two_btn_group">
                             <Button onClick={this.toggleAdding} type="Unsubscribe" text="Cancel" />
-                            <SpinButton onClick={this.adding} text="Save" isLoading={isLoading} />
+                            {/*<SpinButton onClick={this.adding} text="Save" isLoading={isLoading} />*/}
                         </div>
                     </div>
                 )}

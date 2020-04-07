@@ -5,7 +5,7 @@ import Pagination from "../../../components/Pagination";
 import { Link } from "react-router-dom";
 import { request } from "../../../helpers/requests";
 import * as URL from "../../../constants";
-import SpinButton from "../../../components/SpinButton";
+// import SpinButton from "../../../components/SpinButton";
 //import { Loading } from "../../../ui/components/Loader";
 //import Button from "../../../common/Button";
 
@@ -206,21 +206,22 @@ class Users extends Component {
                                                 <td>{user.created ? this.timestamp(user.created) : "No date"}</td>
                                                 {user.admin.permission === 0 ? (
                                                     <td>
-                                                        {!user.banned.status ? (
-                                                            <SpinButton
-                                                                onClick={() => this.toggle(user)}
-                                                                text="Ban User"
-                                                                isLoading={isLoading === user._id}
-                                                                type="Unsubscribe"
-                                                            />
-                                                        ) : (
-                                                            <SpinButton
-                                                                onClick={() => this.toggle(user)}
-                                                                text="Unban"
-                                                                type="Subscribe"
-                                                                isLoading={isLoading === user._id}
-                                                            />
-                                                        )}
+                                                        {!user.banned.status
+                                                            ? // <SpinButton
+                                                              //     onClick={() => this.toggle(user)}
+                                                              //     text="Ban User"
+                                                              //     isLoading={isLoading === user._id}
+                                                              //     type="Unsubscribe"
+                                                              // />
+                                                            null
+                                                            : null
+                                                            // <SpinButton
+                                                            //     onClick={() => this.toggle(user)}
+                                                            //     text="Unban"
+                                                            //     type="Subscribe"
+                                                            //     isLoading={isLoading === user._id}
+                                                            // />
+                                                        }
                                                     </td>
                                                 ) : (
                                                     <td>ADMIN</td>

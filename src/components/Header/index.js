@@ -183,7 +183,11 @@ HeaderNavigation.propTypes = {
 Header.propTypes = {
     ...UserNavigation.propTypes,
     ...HeaderNavigation.propTypes,
-    isActive: PropTypes.bool.isRequired
+    isActive: PropTypes.bool
+};
+
+Header.defaultProps = {
+    isActive: false
 };
 
 export default Header;

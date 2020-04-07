@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { getCookie } from "tiny-cookie";
-import { HashRouter as Router } from "react-router-dom";
-import { Route, Switch, Redirect } from "react-router";
+import {getCookie} from "tiny-cookie";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
 import styles from "./styles.module.scss";
 import LoginPage from "./views/LoginPage";
 import PageTeamSelect from "./views/PageTeamSelect";
@@ -34,35 +33,35 @@ export default class App extends Component {
 
     render() {
         //if no info about user
-        if (!this.state.id || !this.state.token) {
-            return (
-                <div className={`${styles.App} ${styles.wrapper}`}>
-                    <Switch>
-                        <Route path="/" render={props => <LoginPage userAuth={this.userAuth} {...props} />} exact />
-                        <Route path="/admin" component={HomeAdmin} exact />
-
-                        <Redirect to="/" />
-                    </Switch>
-                </div>
-            );
-        }
+        // if (!this.state.id || !this.state.token) {
+        //     return (
+        //         <div className={`${styles.App} ${styles.wrapper}`}>
+        //             <Switch>
+        //                 <Route path="/" render={props => <LoginPage userAuth={this.userAuth} {...props} />} exact />
+        //                 <Route path="/admin" component={HomeAdmin} exact />
+        //
+        //                 <Redirect to="/" />
+        //             </Switch>
+        //         </div>
+        //     );
+        // }
 
         return (
             <div className={`${styles.App} ${styles.wrapper}`}>
-                <Router>
+                <BrowserRouter>
                     <Switch>
-                        <Route path="/" render={props => <LoginPage userAuth={this.userAuth} {...props} />} exact />
-                        <Route path="/team_select/" component={PageTeamSelect} exact />
-                        <Route path="/subscriptions/" component={SubscriptionsPage} />
-                        <Route path="/admin" component={HomeAdmin} exact />
-                        <Route path="/admin/topic/:id" component={OneTopic} exact />
-                        <Route path="/admin/topic-create" component={TopicCreate} exact />
-                        <Route path="/admin/user/:id" component={OneUser} exact />
-                        <Route path="/404" component={NotFound} exact />
-                        <Route component={NotFound} exact />
+                        <Route path="/" component={LoginPage} exact/>
+                        <Route path="/team_select/" component={PageTeamSelect} exact/>
+                        <Route path="/subscriptions/" component={SubscriptionsPage}/>
+                        <Route path="/admin" component={HomeAdmin} exact/>
+                        <Route path="/admin/topic/:id" component={OneTopic} exact/>
+                        <Route path="/admin/topic-create" component={TopicCreate} exact/>
+                        <Route path="/admin/user/:id" component={OneUser} exact/>
+                        <Route path="/404" component={NotFound} exact/>
+                        <Route component={NotFound} exact/>
                     </Switch>
-                </Router>
-                <Footer />
+                </BrowserRouter>
+                <Footer/>
             </div>
         );
     }

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import EventMap from "../../../components/Map";
 import { getCookie } from "tiny-cookie";
 import PageTitle from "../../../components/PageTitle";
-import SpinButton from "../../../components/SpinButton";
+// import SpinButton from "../../../components/SpinButton";
 import Button from "../../../components/Button";
 import parser from "html-react-parser";
 import Preloader from "../../../components/Preloader";
@@ -130,24 +130,24 @@ class TopicFront extends Component {
                                 }
                             </h2>
                             {isAdmin ? (
-                                <Button text={"Edit"} onClick={this.toEdit} />
-                            ) : (
-                                <SpinButton
-                                    text={this.state.isSubscribed ? "Unsubscribe" : "Subscribe"}
-                                    type={this.state.isSubscribed ? "Unsubscribe" : "Subscribe"}
-                                    isLoading={
-                                        isLoading ||
-                                        this.state.currentLoadingEvents.includes(this.props.match.params.id)
-                                    }
-                                    disabled={!this.state.eventData.active}
-                                    onClick={() => {
-                                        if (this.state.isSubscribed) {
-                                            this.handleUnsubscriptionClick(this.props.match.params.id);
-                                        } else {
-                                            this.handleSubscriptionClick(this.props.match.params.id);
-                                        }
-                                    }}
-                                />
+                                <Button text={"Edit"} onClick={this.toEdit}/>
+                            ) : (null
+                                // <SpinButton
+                                //     text={this.state.isSubscribed ? "Unsubscribe" : "Subscribe"}
+                                //     type={this.state.isSubscribed ? "Unsubscribe" : "Subscribe"}
+                                //     isLoading={
+                                //         isLoading ||
+                                //         this.state.currentLoadingEvents.includes(this.props.match.params.id)
+                                //     }
+                                //     disabled={!this.state.eventData.active}
+                                //     onClick={() => {
+                                //         if (this.state.isSubscribed) {
+                                //             this.handleUnsubscriptionClick(this.props.match.params.id);
+                                //         } else {
+                                //             this.handleSubscriptionClick(this.props.match.params.id);
+                                //         }
+                                //     }}
+                                // />
                             )}
                         </div>
                         <p className="section__descr">

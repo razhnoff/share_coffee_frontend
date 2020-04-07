@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import InfoAboutEvent from "../../modules/InfoAboutEvent";
 import PageTitle from "../../../components/PageTitle";
 import EventName from "../../modules/EventName";
-import SpinButton from "../../../components/SpinButton";
+// import SpinButton from "../../../components/SpinButton";
 import { Link } from "react-router-dom";
 import { letterTransform, timeConverter, regularity, checkerProp } from "../../../helpers/helpers";
 import Pagination from "../../../components/Pagination";
@@ -54,33 +54,33 @@ const EventDesc = props => {
                         }
                     />
                 </div>
-                {event.active ? (
-                    <SpinButton
-                        text={isSubscribed ? "Unsubscribe" : "Subscribe"}
-                        type={isSubscribed ? "Unsubscribe" : "Subscribe"}
-                        isLoading={isLoading || currentLoadingEvents.includes(event._id)}
-                        onClick={() => {
-                            if (isSubscribed) {
-                                onUnsubscriptionClick(event._id);
-                            } else {
-                                onSubscriptionClick(event._id);
-                            }
-                        }}
-                    />
-                ) : (
-                    <SpinButton
-                        text={isSubscribed ? "Unsubscribe" : "Subscribe"}
-                        type={isSubscribed ? "Unsubscribe" : "Subscribe"}
-                        isLoading={isLoading || currentLoadingEvents.includes(event._id)}
-                        disabled={true}
-                        onClick={() => {
-                            if (isSubscribed) {
-                                onUnsubscriptionClick(event._id);
-                            } else {
-                                onSubscriptionClick(event._id);
-                            }
-                        }}
-                    />
+                {event.active ? (null
+                    // <SpinButton
+                    //     text={isSubscribed ? "Unsubscribe" : "Subscribe"}
+                    //     type={isSubscribed ? "Unsubscribe" : "Subscribe"}
+                    //     isLoading={isLoading || currentLoadingEvents.includes(event._id)}
+                    //     onClick={() => {
+                    //         if (isSubscribed) {
+                    //             onUnsubscriptionClick(event._id);
+                    //         } else {
+                    //             onSubscriptionClick(event._id);
+                    //         }
+                    //     }}
+                    // />
+                ) : (null
+                    // <SpinButton
+                    //     text={isSubscribed ? "Unsubscribe" : "Subscribe"}
+                    //     type={isSubscribed ? "Unsubscribe" : "Subscribe"}
+                    //     isLoading={isLoading || currentLoadingEvents.includes(event._id)}
+                    //     disabled={true}
+                    //     onClick={() => {
+                    //         if (isSubscribed) {
+                    //             onUnsubscriptionClick(event._id);
+                    //         } else {
+                    //             onSubscriptionClick(event._id);
+                    //         }
+                    //     }}
+                    // />
                 )}
             </div>
         );

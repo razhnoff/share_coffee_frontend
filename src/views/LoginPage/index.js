@@ -10,6 +10,7 @@ import jwtDecode from "jwt-decode";
 import { setStorage, router } from "../../helpers/helpers";
 import Preloader from "../../components/Preloader";
 import Button from "../../components/Button";
+import {PRIMARY} from "../../components/Button/constants";
 //import { SET_USER_DATA } from "../../constants";
 //import ErrorMessage from "../../components/ErrorMessage";
 //import BanMsg from "../../components/BanMsg";
@@ -63,21 +64,25 @@ export default class LoginPage extends Component {
 
         return (
             <Fragment>
-                <Header isActive={false} isAdmin={"0"} hasDepartment={false} />
-                <PageTitle title="Get your own kick off" desc="with Wargaming S&C" />
-                <SectionInfo infoText="Use Telegram to be aware of upcoming meets and manage subscriptions:" />
-                {/*{isBanned ? <BanMsg /> : <></>}*/}
-                {/*{error ? <ErrorMessage error={error} /> : <></>}*/}
+                <Header isActive={false}/>
+                <PageTitle title="Get your own kick off" description="with Wargaming S&C"/>
+                <SectionInfo
+                    value="Use Telegram to be aware of upcoming meets and manage subscriptions:"/>
                 <div id="telegram__login__container" className="section" onClick={this.update}>
-                    {/* <TelegramLoginButton
-            dataOnauth={handleTelegramResponse}
-            botName="rdmcoffee_bot"
-            requestAccess="write"
-            buttonSize="large"
-            cornerRadius={20}
-            usePic={false}
-          /> */}
-                    <Button value={"Log in"} />
+                    {process.NODE_ENV === "production" ? (
+                        <TelegramLoginButton
+                            dataOnauth={handleTelegramResponse}
+                            botName="rdmcoffee_bot"
+                            requestAccess="write"
+                            buttonSize="large"
+                            cornerRadius={20}
+                            usePic={false}
+                        />
+                    ) : (
+                        <Button type={PRIMARY} onClick={() => console.warn("log")}>
+                            {"Log in via Telegram"}
+                        </Button>
+                    )}
                 </div>
             </Fragment>
         );
