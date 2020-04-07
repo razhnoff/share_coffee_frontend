@@ -60,7 +60,7 @@ function getZeroEventsView() {
         <ul className="event-List">
             <div className="event-item">
                 <h4 className="event_title">No confirmed events</h4>
-                <p className="event_place">Check your telegram account</p>
+                <p className="event_hint">Check your telegram account</p>
             </div>
         </ul>
     );

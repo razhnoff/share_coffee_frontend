@@ -90,23 +90,27 @@ import styles from "./scss/styles.module.scss";
 export const AppDecorator = props => {
     return (
         <BrowserRouter>
-            <div className={styles.wrapper}>{props.children}</div>
+            <div className={styles.wrapper} style={props.style}>
+                {props.children}
+            </div>
         </BrowserRouter>
     );
 };
 
-export const CustomDecorator = props => {
+export const ComponentsDecorator = props => {
     return (
-        <AppDecorator>
-            <div style={{ display: "flex", justifyContent: "center" }}>{props.children}</div>
-        </AppDecorator>
+        <div className={styles.inner__wrapper} style={props.style}>
+            {props.children}
+        </div>
     );
 };
 
 AppDecorator.propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
+    style: PropTypes.object
 };
 
-CustomDecorator.propTypes = {
-    children: PropTypes.node
+ComponentsDecorator.propTypes = {
+    children: PropTypes.node,
+    style: PropTypes.object
 };

@@ -1,11 +1,11 @@
 import React from "react";
-import { CustomDecorator } from "../../stories";
+import { ComponentsDecorator } from "../../stories";
 import EventsDropdown from "./";
 
 export default {
     title: "Components|Events Dropdown",
     component: EventsDropdown,
-    decorators: [storyFn => <CustomDecorator>{storyFn()}</CustomDecorator>]
+    decorators: [storyFn => <ComponentsDecorator>{storyFn()}</ComponentsDecorator>]
 };
 
 const EVENTS_MOCK = [

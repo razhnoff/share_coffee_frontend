@@ -46,11 +46,11 @@
     }
   }
 
-  & > .event_place__name, .event_place {
+  & > .event_place__name, .event_place, .event_hint {
     margin: 0 20px;
   }
 
-  & > .event_place__name, .event_place, .event_time {
+  & > .event_place__name, .event_place, .event_time, .event_hint {
     font-weight: 400;
     font: 16px/normal 'Roboto';
     color: #323232;
@@ -76,6 +76,10 @@
   border: 1px solid rgba(51, 51, 51, 0.1);
   padding: 0;
   margin: 0;
+}
+
+.event_hint {
+  padding-bottom: 10px;
 }
 
 ul, h4 {

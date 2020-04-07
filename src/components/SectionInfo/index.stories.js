@@ -1,11 +1,11 @@
 import React from "react";
-import { AppDecorator } from "../../stories";
+import { ComponentsDecorator } from "../../stories";
 import SectionInfo from "./";
 
 export default {
     title: "Components|Section Info",
     component: SectionInfo,
-    decorators: [storyFn => <AppDecorator>{storyFn()}</AppDecorator>]
+    decorators: [storyFn => <ComponentsDecorator>{storyFn()}</ComponentsDecorator>]
 };
 
 export const Default = () => {

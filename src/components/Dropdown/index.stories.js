@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Dropdown from "./";
-import { CustomDecorator } from "../../stories";
+import { ComponentsDecorator } from "../../stories";
 
 export default {
     title: "Components|Dropdown",
     component: Dropdown,
-    decorators: [storyFn => <CustomDecorator>{storyFn()}</CustomDecorator>]
+    decorators: [storyFn => <ComponentsDecorator>{storyFn()}</ComponentsDecorator>]
 };
 
 export const Default = () => {

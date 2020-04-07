@@ -1,11 +1,11 @@
 import React from "react";
-import { AppDecorator } from "../../stories";
+import { ComponentsDecorator } from "../../stories";
 import PageTitle from "./";
 
 export default {
     title: "Components|Page Title",
     component: PageTitle,
-    decorators: [storyFn => <AppDecorator>{storyFn()}</AppDecorator>]
+    decorators: [storyFn => <ComponentsDecorator style={{ flexDirection: "column" }}>{storyFn()}</ComponentsDecorator>]
 };
 
 export const Default = () => {

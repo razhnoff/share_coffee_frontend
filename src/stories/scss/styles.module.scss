@@ -3,3 +3,17 @@
   margin: auto;
   position: relative;
 }
+
+.container {
+  margin: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner__wrapper {
+  margin: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

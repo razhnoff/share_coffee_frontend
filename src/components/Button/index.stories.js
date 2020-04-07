@@ -2,18 +2,18 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 import Button from "./";
 import { EVENT, DEFAULT, PRIMARY, UNSUBSCRIBE, SUBSCRIBE } from "./constants";
-import { CustomDecorator } from "../../stories";
+import { ComponentsDecorator } from "../../stories";
 
 export default {
     title: "Components|Button",
     component: Button,
-    decorators: [storyFn => <CustomDecorator>{storyFn()}</CustomDecorator>]
+    decorators: [storyFn => <ComponentsDecorator>{storyFn()}</ComponentsDecorator>]
 };
 
 export const Login = () => {
     return (
         <Button type={PRIMARY} onClick={action("You log in")}>
-            {"Log in"}
+            {"Log in via Telegram"}
         </Button>
     );
 };

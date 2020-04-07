@@ -1,11 +1,11 @@
 import React from "react";
-import { AppDecorator } from "../../stories";
+import { ComponentsDecorator } from "../../stories";
 import Map from "./";
 
 export default {
     title: "Components|Map/Yandex",
     component: Map,
-    decorators: [storyFn => <AppDecorator>{storyFn()}</AppDecorator>]
+    decorators: [storyFn => <ComponentsDecorator>{storyFn()}</ComponentsDecorator>]
 };
 
 export const Default = () => {

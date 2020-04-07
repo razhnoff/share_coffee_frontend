@@ -1,12 +1,12 @@
 import React from "react";
-import { AppDecorator } from "../../stories";
+import { ComponentsDecorator } from "../../stories";
 import ErrorMessage from "./";
 import { BAN_MSG, ERROR_MSG } from "./constants";
 
 export default {
     title: "Components|Error Message",
     component: ErrorMessage,
-    decorators: [storyFn => <AppDecorator>{storyFn()}</AppDecorator>]
+    decorators: [storyFn => <ComponentsDecorator>{storyFn()}</ComponentsDecorator>]
 };
 
 export const ErrorMsg = () => {
