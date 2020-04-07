@@ -38,7 +38,8 @@ const Dropdown = ({ options, value, defaultValue, onChange }) => {
                             type={DEFAULT}
                             onClick={() => {
                                 handleClick(label);
-                            }}>
+                            }}
+                            style={{ marginTop: "5px" }}>
                             {label}
                         </Button>
                     ))}
