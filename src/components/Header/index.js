@@ -10,7 +10,7 @@ import { DEFAULT } from "../Button/constants";
 import EventsDropDown from "../EventsDropdown";
 import { SERVER } from "../../constants";
 import { checkerProp } from "../../helpers/helpers";
-import "./scss/Header.scss";
+import styles from "./scss/Header.module.scss";
 
 const getUpcomingEvents = userId => {
     const token = getCookie("token");
@@ -43,9 +43,9 @@ const logOut = location => {
 
 const AdminNavigation = ({ avatar, fullName, location }) => {
     return (
-        <div className="header-nav">
-            <img className="header-user__img" src={avatar} alt="avatar" />
-            <span className="header-user__info">{fullName}</span>
+        <div className={styles.header_nav}>
+            <img className={styles.header_user__img} src={avatar} alt="avatar" />
+            <span className={styles.header_user__info}>{fullName}</span>
             <Button type={DEFAULT} onClick={() => logOut(location)}>
                 {"Log out"}
             </Button>
@@ -64,19 +64,19 @@ const UserNavigation = ({ avatar, name, surName, events, location, hasDepartment
         <Fragment>
             {hasDepartment ? (
                 <div>
-                    <div className="header-nav">
-                        <img className="header-user__img" src={avatar} alt="avatar" />
-                        <span className="header-user__info">{fullName}</span>
+                    <div className={styles.header_nav}>
+                        <img className={styles.header_user__img} src={avatar} alt="avatar" />
+                        <span className={styles.header_user__info}>{fullName}</span>
                         <Button type={DEFAULT} onClick={() => logOut(location)}>
                             {"Log out"}
                         </Button>
                     </div>
-                    <div className="header__dropdown">
+                    <div className={styles.header__dropdown}>
                         <EventsDropDown data={events} />
                     </div>
                 </div>
             ) : (
-                <div className="header-nav">
+                <div className={styles.header_nav}>
                     <Button type={DEFAULT} onClick={() => logOut(location)}>
                         {"Log out"}
                     </Button>
@@ -126,9 +126,9 @@ const Header = ({ name, isActive, avatar, surName, location, hasDepartment, perm
     }, []);
 
     return (
-        <div className="header">
-            <div className="header__container">
-                <div className="logo_header">
+        <div className={styles.header}>
+            <div className={styles.header__container}>
+                <div className={styles.logo_header}>
                     <Link to="/" title="Home">
                         <img src={logo} alt="coffee" />
                     </Link>

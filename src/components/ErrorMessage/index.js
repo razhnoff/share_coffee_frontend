@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { BAN_MSG, ERROR_MSG } from "./constants";
-import "./scss/ErrorMessage.scss";
+import styles from "./scss/ErrorMessage.module.scss";
 
 const getClassName = messageType => {
     switch (messageType) {
         case BAN_MSG:
-            return "form__ban";
+            return styles.form__ban;
         case ERROR_MSG:
-            return "form__error";
+            return styles.form__error;
         default:
-            return "form__error";
+            return styles.form__error;
     }
 };
 
@@ -18,7 +18,7 @@ const ErrorMessage = ({ type, value, ...rest }) => {
     const className = getClassName(type);
 
     return (
-        <div className={"form__error-wrapper js-form__err-animation"} {...rest}>
+        <div className={`${styles.form__error_wrapper} ${styles.js_form__err_animation}`} {...rest}>
             <p className={className}>{value}</p>
         </div>
     );

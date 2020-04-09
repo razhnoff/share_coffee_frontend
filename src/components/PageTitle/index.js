@@ -1,19 +1,19 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import "./scss/PageTitle.scss";
+import styles from "./scss/PageTitle.module.scss";
 
 const PageTitle = ({ title, description, mouseOver, mouseOut, click, withShadowContainer }) => {
-    const styleCheck = mouseOver ? "main__header__link" : "main__header";
+    const styleCheck = mouseOver ? styles.main__header__link : styles.main__header;
 
     return (
         <Fragment>
-            <div className="main">
+            <div className={styles.main}>
                 <h1 className={styleCheck} onMouseOver={mouseOver} onMouseOut={mouseOut} onClick={click}>
                     {title}
                 </h1>
-                <p className="main__description">{description}</p>
+                <p className={styles.main__description}>{description}</p>
             </div>
-            {withShadowContainer && <div className="shadow_container" />}
+            {withShadowContainer && <div className={styles.shadow_container} />}
         </Fragment>
     );
 };

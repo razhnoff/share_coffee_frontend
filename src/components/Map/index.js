@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import YandexMap from "./maps/yandex";
-import "./scss/Maps.scss";
 import marker from "../../assets/icons/marker-icon.png";
 
 /**

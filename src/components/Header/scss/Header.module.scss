@@ -32,25 +32,25 @@
 }
 
 
-.header-nav {
+.header_nav {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 13px;
 
-  & > .header-user__info + button {
+  & > .header_user__info + button {
     margin-right: 14px;
     font: 16px/normal "Roboto";
   }
 }
 
-.header-user__img {
+.header_user__img {
   width: 31px;
   border-radius: 50%;
   margin-left: 20px;
 }
 
-.header-user__info {
+.header_user__info {
   display: flex;
   margin: 0 2px 0 7px;
   align-items: center;
@@ -78,7 +78,7 @@
     margin: 10px 0px;
   }
 
-  .header-nav {
+  .header_nav {
     flex-wrap: wrap;
     margin: 10px 0 0 0;
   }

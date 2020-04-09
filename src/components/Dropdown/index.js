@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { find, isEmpty, isNull } from "lodash-es";
-import "./scss/Dropdown.scss";
+import styles from "./scss/Dropdown.module.scss";
 import Button from "../Button";
 import { DEFAULT } from "../Button/constants";
 import { ReactComponent as DropdownArrowIcon } from "../../assets/icons/DropdownArrow.svg";
@@ -25,13 +25,15 @@ const Dropdown = ({ options, value, defaultValue, onChange }) => {
     const filteredOptions = options.filter(item => item.label !== selectedValue);
 
     return (
-        <div className={`department-dropdown_container ${isOpened && "department-focused"}`}>
-            <div className="department-selection" onClick={() => setIsOpened(!isOpened)}>
+        <div className={`${styles.department_dropdown_container} ${isOpened && styles.department_focused}`}>
+            <div className={styles.department_selection} onClick={() => setIsOpened(!isOpened)}>
                 {selectedValue}
-                <DropdownArrowIcon className={`department-arrow ${isOpened ? "department-rotated" : ""}`} />
+                <DropdownArrowIcon
+                    className={`${styles.department_arrow} ${isOpened ? styles.department_rotated : ""}`}
+                />
             </div>
             {isOpened && (
-                <div className="department-list">
+                <div className={styles.department_list}>
                     {filteredOptions.map(({ label, id }) => (
                         <Button
                             key={id}

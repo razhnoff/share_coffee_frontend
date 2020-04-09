@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { isEmpty } from "lodash-es";
-import "./scss/EventsDropdown.scss";
+import styles from "./scss/EventsDropdown.module.scss";
 import Button from "../Button";
 import { EVENT } from "../Button/constants";
 import { checkerProp, letterTransform, secConverter, timeConverter } from "../../helpers/helpers";
@@ -22,17 +22,17 @@ const EventsDropdown = ({ data, maxCountEvents }) => {
 
     return (
         <div
-            className="event-list_container"
+            className={styles.event_list_container}
             onMouseLeave={() => {
                 setIsOpened(false);
             }}>
             <Button type={EVENT} onClick={() => setIsOpened(!isOpened)}>
                 <span>My upcoming events ({data.length})</span>
-                <span className={`event-arrow ${isOpened ? "event-rotated" : ""}`}>{ARROW_ICON}</span>
+                <span className={`${styles.event_arrow} ${isOpened ? styles.event_rotated : ""}`}>{ARROW_ICON}</span>
             </Button>
             {isOpened && (
-                <div className="list">
-                    {isEmpty(data) ? getZeroEventsView() : getEventsView(getSortedListByDate(data), maxCountEvents)}
+                <div className={styles.list}>
+                    {isEmpty(data) ? getZeroEventsView() : getEventsView(getSortedList(data, "date"), maxCountEvents)}
                 </div>
             )}
         </div>
@@ -49,18 +49,18 @@ EventsDropdown.defaultProps = {
     maxCountEvents: 3
 };
 
-function getSortedListByDate(arr) {
+function getSortedList(arr, option) {
     return [...arr].sort((a, b) => {
-        return a.date - b.date;
+        return a[option] - b[option];
     });
 }
 
 function getZeroEventsView() {
     return (
-        <ul className="event-List">
-            <div className="event-item">
-                <h4 className="event_title">No confirmed events</h4>
-                <p className="event_hint">Check your telegram account</p>
+        <ul className={styles.event_List}>
+            <div className={styles.event_item}>
+                <h4 className={styles.event_title}>No confirmed events</h4>
+                <p className={styles.event_hint}>Check your telegram account</p>
             </div>
         </ul>
     );
@@ -68,18 +68,18 @@ function getZeroEventsView() {
 
 function getEventsView(events, maxCountEvents) {
     return (
-        <ul className="event-List">
+        <ul className={styles.event_List}>
             {events.map((item, id) => {
                 if (id < maxCountEvents) {
                     return (
-                        <div className="event-item" key={id}>
-                            <h4 className="event_title">
+                        <div className={styles.event_item} key={id}>
+                            <h4 className={styles.event_title}>
                                 {checkerProp(item.topic.title) ? "Default title" : letterTransform(item.topic.title)}
                             </h4>
-                            <p className="event_place">
+                            <p className={styles.event_place}>
                                 {checkerProp(item.topic.address) ? "Default address" : item.topic.address}
                             </p>
-                            <p className="event_time">
+                            <p className={styles.event_time}>
                                 {checkerProp(item.date)
                                     ? "Default date"
                                     : `${timeConverter(item.date)} - ${secConverter(item.date)}`}

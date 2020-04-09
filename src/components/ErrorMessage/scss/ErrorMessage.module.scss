@@ -1,11 +1,11 @@
-.form__error-wrapper {
+.form__error_wrapper {
   justify-content: center;
   max-width: calc(100% - 2em);
   margin: 20px auto 1em;
   font-family: 'Roboto', sans-serif;
 }
 
-.js-form__err-animation {
+.js_form__err_animation {
   animation: shake 150ms ease-in-out;
 }
 

@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./scss/SectionInfo.scss";
+import styles from "./scss/SectionInfo.module.scss";
 
 const SectionInfo = ({ value }) => {
     return (
-        <div className="section__info">
+        <div className={styles.section__info}>
             <span>{value}</span>
         </div>
     );
