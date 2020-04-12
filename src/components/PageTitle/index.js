@@ -21,15 +21,14 @@ const PageTitle = ({ title, description, mouseOver, mouseOut, click, withShadowC
 PageTitle.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
-    mouseOver: PropTypes.bool,
-    mouseOut: PropTypes.bool,
+    mouseOver: PropTypes.func,
+    mouseOut: PropTypes.func,
     click: PropTypes.func,
     withShadowContainer: PropTypes.bool
 };
 
 PageTitle.defaultProps = {
-    withShadowContainer: true,
-    mouseOver: false
+    withShadowContainer: true
 };
 
 export default PageTitle;

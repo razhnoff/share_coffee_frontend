@@ -18,7 +18,6 @@ const Dropdown = ({ options, value, defaultValue, onChange }) => {
     const selectedValue = getLabelById(options, value, defaultValue);
 
     const handleClick = item => {
-        console.warn(item);
         onChange(item);
         setIsOpened(false);
     };
@@ -39,12 +38,12 @@ const Dropdown = ({ options, value, defaultValue, onChange }) => {
             </div>
             {isOpened && (
                 <div className={styles.department_list}>
-                    {filteredOptions.map(({ label, id }) => (
+                    {filteredOptions.map(({ label, value: id }) => (
                         <Button
                             key={id}
                             type={DEFAULT}
                             onClick={() => {
-                                handleClick(label);
+                                handleClick(id);
                             }}
                             style={{ marginTop: "5px" }}>
                             {label}
@@ -57,7 +56,7 @@ const Dropdown = ({ options, value, defaultValue, onChange }) => {
 };
 
 function getLabelById(options, value, defaultValue) {
-    return isEmpty(value) || isNull(value) ? defaultValue : find(options, item => item.label === value).label;
+    return isEmpty(value) || isNull(value) ? defaultValue : find(options, item => item.value === value).label;
 }
 
 Dropdown.defaultProps = {

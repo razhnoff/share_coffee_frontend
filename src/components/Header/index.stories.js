@@ -18,7 +18,7 @@ export const Default = () => {
             name={"Maksim"}
             surName={"Razhnov"}
             avatar={avatar}
-            permissionStatus={{ superAdmin: true, admin: true }}
+            permission={2}
         />
     );
 };
@@ -31,7 +31,7 @@ export const HeaderDepartment = () => {
             name={"Maksim"}
             surName={"Razhnov"}
             avatar={avatar}
-            permissionStatus={{ superAdmin: false, admin: false }}
+            permission={0}
         />
     );
 };
@@ -44,13 +44,13 @@ export const HeaderUser = () => {
             name={"Maksim"}
             surName={"Razhnov"}
             avatar={avatar}
-            permissionStatus={{ superAdmin: false, admin: false }}
+            permission={0}
         />
     );
 };
 
 export const HeaderAnonymous = () => {
-    return <Header isActive={true} hasDepartment={true} permissionStatus={{ superAdmin: false, admin: false }} />;
+    return <Header isActive={true} hasDepartment={true} permission={0} />;
 };
 
 export const HeaderSuperAdmin = () => {
@@ -61,10 +61,7 @@ export const HeaderSuperAdmin = () => {
             name={"Maksim"}
             surName={"Razhnov"}
             avatar={avatar}
-            permissionStatus={{
-                superAdmin: true,
-                admin: false
-            }}
+            permission={2}
         />
     );
 };
@@ -77,7 +74,7 @@ export const HeaderAdmin = () => {
             name={"Maksim"}
             surName={"Razhnov"}
             avatar={avatar}
-            permissionStatus={{ superAdmin: false, admin: true }}
+            permission={1}
         />
     );
 };

@@ -34,9 +34,11 @@ const getUpcomingEvents = userId => {
 };
 
 const logOut = location => {
-    sessionStorage.clear();
+    const domain = process.env.NODE_ENV === "development" ? "localhost" : "";
+
+    localStorage.clear();
     removeCookie("token", {
-        domain: "random-coffee.fun"
+        domain
     });
     location.history.replace("/");
 };
@@ -86,14 +88,14 @@ const UserNavigation = ({ avatar, name, surName, events, location, hasDepartment
     );
 };
 
-const HeaderNavigation = ({ hasDepartment, name, surName, location, events, avatar, permissionStatus }) => {
-    if (permissionStatus.superAdmin) {
+const HeaderNavigation = ({ hasDepartment, name, surName, location, events, avatar, permission }) => {
+    if (permission === 2) {
         return <AdminNavigation location={location} />;
     }
 
     const fullName = `${name} ${surName}`;
 
-    if (permissionStatus.admin) {
+    if (permission === 1) {
         return <AdminNavigation fullName={fullName} location={location} avatar={avatar} />;
     }
 
@@ -109,7 +111,7 @@ const HeaderNavigation = ({ hasDepartment, name, surName, location, events, avat
     );
 };
 
-const Header = ({ name, isActive, avatar, surName, location, hasDepartment, permissionStatus }) => {
+const Header = ({ name, isActive, avatar, surName, location, hasDepartment, permission }) => {
     const [events, setUserEvents] = useState([]);
 
     useEffect(() => {
@@ -142,7 +144,7 @@ const Header = ({ name, isActive, avatar, surName, location, hasDepartment, perm
                         events={events}
                         avatar={avatar}
                         location={location}
-                        permissionStatus={permissionStatus}
+                        permission={permission}
                     />
                 )}
             </div>
@@ -174,10 +176,7 @@ UserNavigation.defaultProp = {
 
 HeaderNavigation.propTypes = {
     ...UserNavigation.propTypes,
-    permissionStatus: PropTypes.shape({
-        admin: PropTypes.bool,
-        superAdmin: PropTypes.bool
-    }).isRequired
+    permission: PropTypes.number.isRequired
 };
 
 Header.propTypes = {
