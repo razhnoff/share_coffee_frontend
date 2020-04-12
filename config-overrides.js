@@ -1,8 +1,8 @@
-// function override(config, env) {
-//     const path = require("path");
-//     // For import with absolute path
-//     config.resolve.modules = [path.resolve("./")].concat(config.resolve.modules);
-//     return config;
-// }
-//
-// module.exports = override;
+// eslint-disable-next-line no-unused-vars
+function override(config, env) {
+    // todo set parametes/plugins for config
+
+    return config;
+}
+
+module.exports = override;
