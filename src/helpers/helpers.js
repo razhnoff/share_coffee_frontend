@@ -105,4 +105,26 @@ const checkListSuperAdmin = () => {
     }
 };
 
-export { setStorage, router, letterTransform, timeConverter, regularity, secConverter, checkerProp, checkTokenTime };
+function getSortedList(arr, option, sortParam) {
+    return [...arr].sort((a, b) => {
+        switch (sortParam) {
+            case "desc":
+                return a[option] < b[option] ? 1 : -1;
+            case "asc":
+            default:
+                return a[option] > b[option] ? 1 : -1;
+        }
+    });
+}
+
+export {
+    getSortedList,
+    setStorage,
+    router,
+    letterTransform,
+    timeConverter,
+    regularity,
+    secConverter,
+    checkerProp,
+    checkTokenTime
+};

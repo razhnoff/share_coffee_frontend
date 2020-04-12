@@ -4,6 +4,7 @@ import { find, isEmpty, isNull } from "lodash-es";
 import styles from "./scss/Dropdown.module.scss";
 import Button from "../Button";
 import { DEFAULT } from "../Button/constants";
+import { getSortedList } from "../../helpers/helpers";
 import { ReactComponent as DropdownArrowIcon } from "../../assets/icons/DropdownArrow.svg";
 
 /**
@@ -22,7 +23,11 @@ const Dropdown = ({ options, value, defaultValue, onChange }) => {
         setIsOpened(false);
     };
 
-    const filteredOptions = options.filter(item => item.label !== selectedValue);
+    const filteredOptions = getSortedList(
+        options.filter(item => item.label !== selectedValue),
+        "label",
+        "asc"
+    );
 
     return (
         <div className={`${styles.department_dropdown_container} ${isOpened && styles.department_focused}`}>
@@ -56,7 +61,8 @@ function getLabelById(options, value, defaultValue) {
 }
 
 Dropdown.defaultProps = {
-    options: []
+    options: [],
+    defaultValue: "Select Department"
 };
 
 Dropdown.propTypes = {

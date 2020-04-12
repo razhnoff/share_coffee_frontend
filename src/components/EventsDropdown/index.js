@@ -4,7 +4,7 @@ import { isEmpty } from "lodash-es";
 import styles from "./scss/EventsDropdown.module.scss";
 import Button from "../Button";
 import { EVENT } from "../Button/constants";
-import { checkerProp, letterTransform, secConverter, timeConverter } from "../../helpers/helpers";
+import { checkerProp, letterTransform, secConverter, timeConverter, getSortedList } from "../../helpers/helpers";
 
 const ARROW_ICON = "↓";
 
@@ -32,7 +32,9 @@ const EventsDropdown = ({ data, maxCountEvents }) => {
             </Button>
             {isOpened && (
                 <div className={styles.list}>
-                    {isEmpty(data) ? getZeroEventsView() : getEventsView(getSortedList(data, "date"), maxCountEvents)}
+                    {isEmpty(data)
+                        ? getZeroEventsView()
+                        : getEventsView(getSortedList(data, "date", "desc"), maxCountEvents)}
                 </div>
             )}
         </div>
@@ -48,12 +50,6 @@ EventsDropdown.defaultProps = {
     data: [],
     maxCountEvents: 3
 };
-
-function getSortedList(arr, option) {
-    return [...arr].sort((a, b) => {
-        return a[option] - b[option];
-    });
-}
 
 function getZeroEventsView() {
     return (

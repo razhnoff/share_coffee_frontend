@@ -18,7 +18,5 @@ export const Default = () => {
         { label: "DevOps", id: 3 }
     ];
 
-    return (
-        <Dropdown options={options} value={selectedValue} defaultValue={"Select Department"} onChange={setSelection} />
-    );
+    return <Dropdown options={options} value={selectedValue} onChange={setSelection} />;
 };
