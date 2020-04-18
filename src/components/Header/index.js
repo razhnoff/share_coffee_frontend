@@ -1,37 +1,16 @@
 import React, { useEffect, useState, Fragment } from "react";
 import PropTypes from "prop-types";
-import axios from "axios";
-import { removeCookie, getCookie } from "tiny-cookie";
+import Api from "../../services/api";
+import { removeCookie } from "tiny-cookie";
 import { Link } from "react-router-dom";
 import logo from "../../assets/icons/logo.svg";
 import defaultUser from "../../assets/icons/defaultUser.png";
 import Button from "../Button";
 import { DEFAULT } from "../Button/constants";
 import EventsDropDown from "../EventsDropdown";
-import { SERVER } from "../../constants";
 import { checkerProp } from "../../helpers/helpers";
 import styles from "./scss/Header.module.scss";
-
-const getUpcomingEvents = userId => {
-    const token = getCookie("token");
-    const obj = {
-        method: "get",
-        url: `${SERVER}/users/${userId}/upcoming`,
-        headers: {
-            Authorization: `Bearer ${token}`,
-            mode: "cors",
-            "Content-Type": "application/json"
-        }
-    };
-    return axios(obj)
-        .then(res => {
-            return res;
-        })
-        .catch(err => {
-            console.error(err);
-            return err;
-        });
-};
+import { isEmpty } from "lodash-es";
 
 const logOut = location => {
     const domain = process.env.NODE_ENV === "development" ? "localhost" : "";
@@ -40,7 +19,7 @@ const logOut = location => {
     removeCookie("token", {
         domain
     });
-    location.history.replace("/");
+    location.history.push("/");
 };
 
 const AdminNavigation = ({ avatar, fullName, location }) => {
@@ -56,9 +35,9 @@ const AdminNavigation = ({ avatar, fullName, location }) => {
 };
 
 const UserNavigation = ({ avatar, name, surName, events, location, hasDepartment }) => {
-    if (checkerProp(avatar)) {
-        avatar = defaultUser;
-    }
+    // if (checkerProp(avatar)) {
+    //     avatar = defaultUser;
+    // }
 
     const fullName = checkerProp(name) || checkerProp(surName) ? "User" : `${name} ${surName}`;
 
@@ -115,15 +94,19 @@ const Header = ({ name, isActive, avatar, surName, location, hasDepartment, perm
     const [events, setUserEvents] = useState([]);
 
     useEffect(() => {
-        const hasId = checkerProp(sessionStorage.getItem("id"));
+        const userId = localStorage.getItem("_id");
+
+        if (isEmpty(userId)) {
+            console.log("Empty user id");
+            return;
+        }
+
         const fetchData = async () => {
-            if (!hasId) {
-                const result = await getUpcomingEvents(sessionStorage.getItem("id"));
-                setUserEvents(result.data.data);
-            } else {
-                setUserEvents([]);
-            }
+            const response = await Api.getUpcomingEvents(userId);
+
+            setUserEvents(response.data.data);
         };
+
         fetchData();
     }, []);
 
