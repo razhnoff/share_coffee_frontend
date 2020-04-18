@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import styles from "./scss/PageTitle.module.scss";
 
-const PageTitle = ({ title, description, mouseOver, mouseOut, click, withShadowContainer }) => {
+const PageTitle = ({ title, description, mouseOver, mouseOut, click, isShadowContainer }) => {
     const styleCheck = mouseOver ? styles.main__header__link : styles.main__header;
 
     return (
@@ -13,7 +13,7 @@ const PageTitle = ({ title, description, mouseOver, mouseOut, click, withShadowC
                 </h1>
                 <p className={styles.main__description}>{description}</p>
             </div>
-            {withShadowContainer && <div className={styles.shadow_container} />}
+            {isShadowContainer && <div className={styles.shadow_container} />}
         </Fragment>
     );
 };
@@ -24,11 +24,11 @@ PageTitle.propTypes = {
     mouseOver: PropTypes.func,
     mouseOut: PropTypes.func,
     click: PropTypes.func,
-    withShadowContainer: PropTypes.bool
+    isShadowContainer: PropTypes.bool
 };
 
 PageTitle.defaultProps = {
-    withShadowContainer: true
+    isShadowContainer: true
 };
 
 export default PageTitle;
