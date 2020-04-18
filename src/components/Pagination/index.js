@@ -1,51 +1,43 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-class Pagination extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            currentPage: 1
-        };
-    }
+import styles from "./scss/Pagination.module.scss";
 
-    componentDidMount() {
-        const startingPage = this.props.startingPage ? this.props.startingPage : 1;
-        this.setState({
-            currentPage: startingPage
-        });
-    }
+const Pagination = ({ startingPage, change, pageCount }) => {
+    const [currentPage, setCurrentPage] = useState(1);
 
-    setCurrentPage(num) {
-        this.setState({ currentPage: num });
-        this.props.change(num);
-    }
+    useEffect(() => {
+        setCurrentPage(startingPage);
+    }, [startingPage]);
 
-    createControls() {
-        let controls = [];
-        const { currentPage } = this.state;
-        const { pageCount } = this.props;
-        for (let i = 1; i <= pageCount; i++) {
+    const currentPageHandler = value => {
+        setCurrentPage(value);
+        change(value);
+    };
+
+    const createBtnControls = () => {
+        const controls = [];
+
+        for (let pageNumber = 1; pageNumber <= pageCount + 1; pageNumber++) {
             controls.push(
                 <div
-                    key={i}
-                    className={`pagin-btn ${i === currentPage ? "pagin-active" : ""}`}
-                    onClick={() => this.setCurrentPage(i)}>
-                    {i}
+                    key={pageNumber}
+                    className={`${styles.pagin_btn} ${pageNumber === currentPage ? styles.pagin_active : ""}`}
+                    onClick={() => currentPageHandler(pageNumber)}>
+                    {pageNumber}
                 </div>
             );
         }
-        return controls;
-    }
 
-    render() {
-        return <div className="pagination">{this.createControls()}</div>;
-    }
-}
+        return controls;
+    };
+
+    return <div className={styles.pagination}>{createBtnControls()}</div>;
+};
 
 Pagination.propTypes = {
     change: PropTypes.func,
-    currentPage: PropTypes.number,
+    // currentPage: PropTypes.number,
     pageCount: PropTypes.number,
     startingPage: PropTypes.number.isRequired
 };
