@@ -8,12 +8,11 @@
   &:hover {
     color: #000;
   }
+}
 
-  &:focus {
-    color: #0064FF;
-    outline: none !important;
-  }
-
+.department_selected,
+.department_selected:hover {
+  color: #0064FF;
 }
 
 .department_dropdown_container {

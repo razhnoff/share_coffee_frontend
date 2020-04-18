@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { find, isEmpty, isNull } from "lodash-es";
+import { find, isEmpty } from "lodash-es";
 import styles from "./scss/Dropdown.module.scss";
 import Button from "../Button";
-import { DEFAULT } from "../Button/constants";
+import { SELECT } from "../Button/constants";
 import { getSortedList } from "../../helpers/helpers";
 import { ReactComponent as DropdownArrowIcon } from "../../assets/icons/DropdownArrow.svg";
 
@@ -30,7 +30,9 @@ const Dropdown = ({ options, value, defaultValue, onChange }) => {
 
     return (
         <div className={`${styles.department_dropdown_container} ${isOpened && styles.department_focused}`}>
-            <div className={styles.department_selection} onClick={() => setIsOpened(!isOpened)}>
+            <div
+                className={`${styles.department_selection} ${isOpened && styles.department_selected}`}
+                onClick={() => setIsOpened(!isOpened)}>
                 {selectedValue}
                 <DropdownArrowIcon
                     className={`${styles.department_arrow} ${isOpened ? styles.department_rotated : ""}`}
@@ -41,7 +43,7 @@ const Dropdown = ({ options, value, defaultValue, onChange }) => {
                     {filteredOptions.map(({ label, value: id }) => (
                         <Button
                             key={id}
-                            type={DEFAULT}
+                            type={SELECT}
                             onClick={() => {
                                 handleClick(id);
                             }}
@@ -56,7 +58,7 @@ const Dropdown = ({ options, value, defaultValue, onChange }) => {
 };
 
 function getLabelById(options, value, defaultValue) {
-    return isEmpty(value) || isNull(value) ? defaultValue : find(options, item => item.value === value).label;
+    return isEmpty(value) ? defaultValue : find(options, item => item.value === value).label;
 }
 
 Dropdown.defaultProps = {
