@@ -18,7 +18,7 @@ const Pagination = ({ startingPage, change, pageCount }) => {
     const createBtnControls = () => {
         const controls = [];
 
-        for (let pageNumber = 1; pageNumber <= pageCount + 1; pageNumber++) {
+        for (let pageNumber = 1; pageNumber <= pageCount; pageNumber++) {
             controls.push(
                 <div
                     key={pageNumber}
