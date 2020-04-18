@@ -32,7 +32,8 @@
   }
 }
 
-.default {
+.default,
+.select {
   min-width: unset;
   padding: 9px 20px;
   padding-right: 0;
@@ -145,6 +146,13 @@
 .redDots {
   span {
     background-color: #FF0032;
+  }
+}
+
+.select {
+  &:focus:enabled,
+  &:hover:enabled {
+    color: #0064FF;
   }
 }
 

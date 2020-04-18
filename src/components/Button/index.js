@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { SUBSCRIBE, EVENT, DEFAULT, PRIMARY, UNSUBSCRIBE } from "./constants";
+import { SUBSCRIBE, EVENT, DEFAULT, PRIMARY, UNSUBSCRIBE, SELECT } from "./constants";
 import styles from "./scss/Button.module.scss";
 
 const Button = ({ children, onClick, disabled, type, ...rest }) => {
@@ -10,7 +10,8 @@ const Button = ({ children, onClick, disabled, type, ...rest }) => {
         [styles.unsubscribe]: type === UNSUBSCRIBE,
         [styles.primary]: type === PRIMARY,
         [styles.default]: type === DEFAULT,
-        [styles.event]: type === EVENT
+        [styles.event]: type === EVENT,
+        [styles.select]: type === SELECT
     });
 
     return (
