@@ -4,7 +4,6 @@ import md5 from "js-md5";
 import ErrorMessage from "../../components/ErrorMessage";
 import { request } from "../../helpers/requests";
 // import SpinButton from "../../components/SpinButton";
-import { setCookie } from "tiny-cookie";
 import jwtDecode from "jwt-decode";
 import { setStorage } from "../../helpers/helpers";
 import * as URL from "../../constants";
@@ -35,8 +34,9 @@ class AdminLoginPage extends Component {
         request.post(URL.LOGIN_ADMIN, user, false).then(data => {
             if (!data.message) {
                 if (data.object.token) {
+                    // eslint-disable-next-line no-unused-vars
                     const date = new Date(jwtDecode(data.object.token).exp * 1000).toGMTString();
-                    setCookie("token", data.object.token, { expires: date });
+                    // localStorage.setItem("token", data.object.token, { expires: date });
                     setStorage(jwtDecode(`${data.object.token}`));
                     this.props.setLogin();
                     this.setState({ isLoading: false });

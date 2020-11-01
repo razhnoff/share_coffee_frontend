@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { SUBSCRIBE, EVENT, DEFAULT, PRIMARY, UNSUBSCRIBE, SELECT } from "./constants";
+import { SUBSCRIBE, EVENT, DEFAULT, PRIMARY, UNSUBSCRIBE, SELECT } from "../../constants";
 import styles from "./scss/Button.module.scss";
 
 const Button = ({ children, onClick, disabled, type, ...rest }) => {

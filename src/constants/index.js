@@ -1,3 +1,10 @@
+export const SUBSCRIBE = "Subscribe";
+export const UNSUBSCRIBE = "Unsubscribe";
+export const PRIMARY = "Primary";
+export const DEFAULT = "Logout";
+export const EVENT = "Event";
+export const SELECT = "Select";
+
 const SERVER = "https://forgeserver.herokuapp.com/api";
 
 export const LOGIN_ADMIN = "https://forgeserver.herokuapp.com/login/admin";

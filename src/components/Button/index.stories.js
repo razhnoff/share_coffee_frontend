@@ -1,7 +1,7 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import Button from "./";
-import { EVENT, DEFAULT, PRIMARY, UNSUBSCRIBE, SUBSCRIBE } from "./constants";
+import { EVENT, DEFAULT, PRIMARY, UNSUBSCRIBE, SUBSCRIBE } from "../../constants";
 import { ComponentsDecorator } from "../../stories";
 
 export default {
@@ -59,5 +59,9 @@ export const DisablePrimary = () => {
 };
 
 export const EventsButton = () => {
-    return <Button type={EVENT}>{"My upcoming events 2"}</Button>;
+    return (
+        <Button type={EVENT} onClick={() => alert("click")}>
+            {"My upcoming events 2"}
+        </Button>
+    );
 };

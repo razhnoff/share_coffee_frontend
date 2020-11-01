@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { isEmpty } from "lodash-es";
+import { isEmpty, isNull, upperFirst } from "lodash-es";
 import styles from "./scss/EventsDropdown.module.scss";
 import Button from "../Button";
-import { EVENT } from "../Button/constants";
-import { checkerProp, letterTransform, secConverter, timeConverter, getSortedList } from "../../helpers/helpers";
+import { EVENT } from "../../constants";
+import { convertToClockVisibility, timeConverter, getSortedList } from "../../helpers/helpers";
 
 const ARROW_ICON = "↓";
 
@@ -70,21 +70,20 @@ function getEventsView(events, maxCountEvents) {
                     return (
                         <div className={styles.event_item} key={id}>
                             <h4 className={styles.event_title}>
-                                {checkerProp(item.topic.title) ? "Default title" : letterTransform(item.topic.title)}
+                                {isNull(item.topic.title) ? "No title" : upperFirst(item.topic.title)}
                             </h4>
                             <p className={styles.event_place}>
-                                {checkerProp(item.topic.address) ? "Default address" : item.topic.address}
+                                {isNull(item.topic.address) ? "No address" : item.topic.address}
                             </p>
                             <p className={styles.event_time}>
-                                {checkerProp(item.date)
-                                    ? "Default date"
-                                    : `${timeConverter(item.date)} - ${secConverter(item.date)}`}
+                                {isNull(item.date)
+                                    ? "No date"
+                                    : `${timeConverter(item.date)} - ${convertToClockVisibility(item.date)}`}
                             </p>
                         </div>
                     );
-                } else {
-                    return <></>;
                 }
+                return <></>;
             })}
         </ul>
     );

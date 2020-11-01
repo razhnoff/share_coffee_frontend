@@ -1,4 +1,3 @@
-import { removeCookie, getCookie } from "tiny-cookie";
 import axios from "axios";
 
 class requests {
@@ -11,14 +10,14 @@ class requests {
 
     redirect2Login() {
         sessionStorage.clear();
-        removeCookie("token");
+        // removeCookie("token");
         window.location.href = "/";
     }
 
     getAuthHeader() {
         return {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${getCookie("token")}`
+            Authorization: `Bearer ${localStorage.getItem("token")}`
         };
     }
 

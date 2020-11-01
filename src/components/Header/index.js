@@ -1,24 +1,18 @@
 import React, { useEffect, useState, Fragment } from "react";
 import PropTypes from "prop-types";
-import Api from "../../services/api";
-import { removeCookie } from "tiny-cookie";
+import { isEmpty } from "lodash-es";
 import { Link } from "react-router-dom";
+import Client from "../../services/api";
 import logo from "../../assets/icons/logo.svg";
 import defaultUser from "../../assets/icons/defaultUser.png";
 import Button from "../Button";
-import { DEFAULT } from "../Button/constants";
+import { DEFAULT } from "../../constants";
 import EventsDropDown from "../EventsDropdown";
-import { checkerProp } from "../../helpers/helpers";
 import styles from "./scss/Header.module.scss";
-import { isEmpty } from "lodash-es";
 
 const logOut = location => {
-    const domain = process.env.NODE_ENV === "development" ? "localhost" : "";
-
     localStorage.clear();
-    removeCookie("token", {
-        domain
-    });
+
     location.history.push("/");
 };
 
@@ -34,13 +28,7 @@ const AdminNavigation = ({ avatar, fullName, location }) => {
     );
 };
 
-const UserNavigation = ({ avatar, name, surName, events, location, hasDepartment }) => {
-    // if (checkerProp(avatar)) {
-    //     avatar = defaultUser;
-    // }
-
-    const fullName = checkerProp(name) || checkerProp(surName) ? "User" : `${name} ${surName}`;
-
+const UserNavigation = ({ avatar, fullName, events, location, hasDepartment }) => {
     return (
         <Fragment>
             {hasDepartment ? (
@@ -72,18 +60,19 @@ const HeaderNavigation = ({ hasDepartment, name, surName, location, events, avat
         return <AdminNavigation location={location} />;
     }
 
-    const fullName = `${name} ${surName}`;
-
     if (permission === 1) {
+        const fullName = isEmpty(name) || isEmpty(surName) ? "Admin" : `${name} ${surName}`;
+
         return <AdminNavigation fullName={fullName} location={location} avatar={avatar} />;
     }
+
+    const fullName = isEmpty(name) || isEmpty(surName) ? "User:" : `${name} ${surName}`;
 
     return (
         <UserNavigation
             hasDepartment={hasDepartment}
-            name={name}
+            fullName={fullName}
             avatar={avatar}
-            surName={surName}
             location={location}
             events={events}
         />
@@ -97,12 +86,12 @@ const Header = ({ name, isActive, avatar, surName, location, hasDepartment, perm
         const userId = localStorage.getItem("_id");
 
         if (isEmpty(userId)) {
-            console.log("Empty user id");
+            console.warn("Empty user id");
             return;
         }
 
         const fetchData = async () => {
-            const response = await Api.getUpcomingEvents(userId);
+            const response = await Client.getUpcomingEvents(userId, localStorage.getItem("token"));
 
             setUserEvents(response.data.data);
         };
@@ -148,13 +137,12 @@ AdminNavigation.defaultProps = {
 
 UserNavigation.propTypes = {
     ...AdminNavigation.propTypes,
-    surName: PropTypes.string,
     events: PropTypes.array,
     hasDepartment: PropTypes.bool
 };
 
 UserNavigation.defaultProp = {
-    avatar: defaultUser
+    avatar: defaultUser,
 };
 
 HeaderNavigation.propTypes = {

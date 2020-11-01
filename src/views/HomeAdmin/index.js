@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import HomeDashboard from "./home";
 import Preloader from "../../components/Preloader";
 import { GET_USER } from "../../constants/";
-import AdminLoginPage from "../AdminLoginPage";
+import AdminLoginPage from "../AdminLogin";
 import { request } from "../../helpers/requests";
 
 class HomeAdmin extends Component {
@@ -48,7 +48,7 @@ class HomeAdmin extends Component {
         return (
             <Fragment>
                 {/*<Header*/}
-                {/*isActive={true}*/}
+                {/*isActive*/}
                 {/*isAdmin={sessionStorage.getItem("isAdmin")}*/}
                 {/*hasDepartment={false}*/}
                 {/*location={this.props}*/}

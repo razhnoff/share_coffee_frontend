@@ -31,7 +31,34 @@ class OneUser extends Component {
     getData() {
         request.get(URL.ONE_USER(this.props.match.params.id)).then(data => {
             this.setState({
-                user: data.object.data,
+                user: {
+                    banned: {
+                        status: false,
+                        expired: 0
+                    },
+                    admin: {
+                        permission: 0
+                    },
+                    _id: "5cf111699193c9bb54ae34a9",
+                    telegramId: 255693053,
+                    __v: 0,
+                    avatar: "https://t.me/i/userpic/320/happylolonly.jpg",
+                    created: 1559302648127,
+                    events: [
+                        {
+                            _id: "5cf1131cd2a5f2001e42575e",
+                            eventId: "5cf10e0dd2a5f2001e425714"
+                        },
+                        {
+                            _id: "5cf1131cd2a5f2001e42575e",
+                            eventId: "5cf10e0dd2a5f2001e425714"
+                        }
+                    ],
+                    firstName: "Ches",
+                    lastName: "Zhuravsky",
+                    username: "happylolonly",
+                    department: null
+                },
                 error: data.message
             });
         });
@@ -99,8 +126,8 @@ class OneUser extends Component {
         return (
             <Fragment>
                 <Header
-                    isActive={true}
-                    isAdmin={true}
+                    isActive
+                    isAdmin
                     hasDepartment={false}
                     avatar={sessionStorage.getItem("avatar")}
                     name={`${sessionStorage.getItem("firstName")} ${sessionStorage.getItem("lastName")}`}

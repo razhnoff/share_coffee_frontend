@@ -9,5 +9,5 @@ export default {
 };
 
 export const Default = () => {
-    return <Map center={[53.849902, 27.69444]} zoom={10} type={"yandex#map"} />;
+    return <Map location={[53.849902, 27.69444]} zoom={10} type={"yandex#map"} />;
 };

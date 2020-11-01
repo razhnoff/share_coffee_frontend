@@ -1,5 +1,3 @@
-import { removeCookie } from "tiny-cookie";
-
 const checkerProp = prop => {
     if (
         prop === "null" ||
@@ -30,63 +28,69 @@ const setStorage = userData => {
     sessionStorage.setItem("tokenTimeOver", userData.exp);
 };
 
-const router = props => {
-    props.userAuth();
+const router = (history, userAuth) => {
+    userAuth();
     const hasId = !checkerProp(sessionStorage.getItem("id"));
     const hasDepartament = !checkerProp(sessionStorage.getItem("department"));
     if (hasId && !hasDepartament) {
-        props.history.push("/team_select/");
+        history.push("/team_select/");
     } else if (hasId && hasDepartament) {
-        props.history.push("/subscriptions/");
-    }
-};
-
-const letterTransform = prop => {
-    let str = "";
-    if (prop !== undefined || prop !== null) {
-        for (let i = 0; i < prop.length; i++) {
-            if (i === 0) {
-                str += prop.charAt(i).toUpperCase();
-            } else {
-                str += prop.charAt(i);
-            }
-        }
-        return str;
-    } else {
-        return "";
+        // history.push("/subscriptions/");
     }
 };
 
 const regularity = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-const timeConverter = prop => {
-    const date = new Date(prop);
+const timeConverter = timestamp => {
+    const initDate = new Date(timestamp);
     let month = "0";
-    if (date.getMonth() < 9) {
-        month += date.getMonth() + 1;
+    let day = "0";
+
+    if (initDate.getMonth() < 9) {
+        month += initDate.getMonth() + 1;
     } else {
-        month = date.getMonth() + 1;
+        month = initDate.getMonth() + 1;
     }
-    return `${date.getDate()}.${month}.${date.getFullYear()}`;
+
+    if (initDate.getDate() < 10) {
+        day += initDate.getDate();
+    } else {
+        day = initDate.getDate();
+    }
+
+    const date = `${day}.${month}.${initDate.getFullYear()}`;
+
+    return date;
 };
 
-const secConverter = prop => {
-    const date = new Date(prop);
+const convertToClockVisibility = timestamp => {
+    const initDate = new Date(timestamp);
     let min = "0";
-    if (date.getUTCMinutes() < 10) {
-        min += date.getUTCMinutes();
+    let hours = "0";
+
+    if (initDate.getMinutes() < 10) {
+        min += initDate.getMinutes();
     } else {
-        min = date.getUTCMinutes();
+        min = initDate.getMinutes();
     }
-    return `${date.getUTCHours()}:${min}`;
+
+    if (initDate.getHours() < 10) {
+        hours += initDate.getHours();
+    } else {
+        hours = initDate.getHours();
+    }
+
+    const time = `${hours}:${min}`;
+
+    return time;
 };
 
 const checkTokenTime = tokenTimeOver => {
-    let dateNow = (Date.now() / 1000).toFixed();
-    if (+tokenTimeOver < +dateNow) {
+    let dateNow = Number((Date.now() / 1000).toFixed());
+    if (Number(tokenTimeOver) < dateNow) {
         window.location.history.replace("/");
-        sessionStorage.clear();
-        removeCookie("token");
+        // removeCookie("token");
+        localStorage.clear();
     } else {
         return;
     }
@@ -121,10 +125,9 @@ export {
     getSortedList,
     setStorage,
     router,
-    letterTransform,
     timeConverter,
     regularity,
-    secConverter,
+    convertToClockVisibility,
     checkerProp,
     checkTokenTime
 };

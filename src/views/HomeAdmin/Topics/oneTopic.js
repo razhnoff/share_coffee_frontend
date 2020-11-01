@@ -6,7 +6,7 @@ import PageTitle from "../../../components/PageTitle";
 import { request } from "../../../helpers/requests";
 import Header from "../../../components/Header";
 import * as URL from "../../../constants";
-import TopicFront from "../../Events/TopicFront";
+import SingleTopic from "../../SingleTopic";
 import { DropdownContent, DropdownItem, Dropdown } from "../../../ui/components/dropdown";
 
 class TopicDropdown extends Component {
@@ -126,8 +126,8 @@ class oneTopic extends Component {
         return (
             <>
                 <Header
-                    isActive={true}
-                    isAdmin={true}
+                    isActive
+                    isAdmin
                     hasDepartment={false}
                     avatar={sessionStorage.getItem("avatar")}
                     name={`${sessionStorage.getItem("firstName")} ${sessionStorage.getItem("lastName")}`}
@@ -138,7 +138,7 @@ class oneTopic extends Component {
                         mouseOver={this.mouseEvents.mouseOver}
                         mouseOut={this.mouseEvents.mouseOut}
                         click={this.mouseEvents.click}
-                        withShadowContainer={false}
+                        isShadowContainer={false}
                     />
                     <TabContainer>
                         <Tab onClick={() => this.openTab("Description")} active={activeTab === "Description"}>
@@ -153,7 +153,7 @@ class oneTopic extends Component {
                         <div>
                             {!isEdit ? (
                                 <div>
-                                    <TopicFront match={this.props.match} isAdmin={true} history={this.props.history} />
+                                    <SingleTopic match={this.props.match} isAdmin history={this.props.history} />
                                 </div>
                             ) : (
                                 <TopicEditer id={topic._id} />

@@ -183,7 +183,7 @@ class TopicEditor extends Component {
 
                     <TopicDescription
                         data={this.state.description}
-                        editable={true}
+                        editable
                         onChange={this.onDescriptionChange}
                     />
                 </form>

@@ -11,3 +11,7 @@ export default {
 export const Default = () => {
     return <PageTitle title="Get your own kick off" description="with Wargaming S&C" />;
 };
+
+export const WithShadowContainer = () => {
+    return <PageTitle title={"Current topics"} isShadowContainer />;
+};

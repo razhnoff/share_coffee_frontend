@@ -1,5 +1,4 @@
 import axios from "axios";
-import { getCookie } from "tiny-cookie";
 
 import * as URL from "../../constants";
 
@@ -8,7 +7,7 @@ const addNewEvent = data => {
         method: "POST",
         url: URL.ADD_NEW_TOPIC,
         headers: {
-            Authorization: `Bearer ${getCookie("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
             "content-type": "application/json"
         },
         data
@@ -20,7 +19,7 @@ const updateEvent = (id, data) => {
         method: "PUT",
         url: URL.UPDATE_TOPIC(id),
         headers: {
-            Authorization: `Bearer ${getCookie("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
             "content-type": "application/json"
         },
         data

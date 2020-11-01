@@ -9,6 +9,16 @@
   animation: shake 150ms ease-in-out;
 }
 
+.form {
+  &__error {
+    color: #FF0032;
+  }
+
+  &__ban {
+    color: #0064FF;
+  }
+}
+
 @keyframes shake {
   0% {
     transform: translateX(0);

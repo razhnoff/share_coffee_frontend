@@ -16,11 +16,11 @@ const TAG_ICON = {
     iconContentOffset: [0, 0]
 };
 
-const Map = ({ zoom, type, center }) => {
+const Map = ({ zoom, type, location }) => {
     const optionsMap = {
         type,
         zoom,
-        center
+        center: location
     };
     return <YandexMap optionsMap={optionsMap} icon={TAG_ICON} />;
 };
@@ -28,7 +28,12 @@ const Map = ({ zoom, type, center }) => {
 Map.propTypes = {
     type: PropTypes.string,
     zoom: PropTypes.number,
-    center: PropTypes.array
+    location: PropTypes.array
+};
+
+Map.defaultProps = {
+    type: "yandex#map",
+    zoom: 5
 };
 
 export default Map;

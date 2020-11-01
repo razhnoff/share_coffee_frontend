@@ -26,7 +26,7 @@ export const Default = () => {
 export const HeaderDepartment = () => {
     return (
         <Header
-            isActive={true}
+            isActive
             hasDepartment={false}
             name={"Maksim"}
             surName={"Razhnov"}
@@ -39,8 +39,8 @@ export const HeaderDepartment = () => {
 export const HeaderUser = () => {
     return (
         <Header
-            isActive={true}
-            hasDepartment={true}
+            isActive
+            hasDepartment
             name={"Maksim"}
             surName={"Razhnov"}
             avatar={avatar}
@@ -50,14 +50,14 @@ export const HeaderUser = () => {
 };
 
 export const HeaderAnonymous = () => {
-    return <Header isActive={true} hasDepartment={true} permission={0} />;
+    return <Header isActive hasDepartment permission={1} />;
 };
 
 export const HeaderSuperAdmin = () => {
     return (
         <Header
-            isActive={true}
-            hasDepartment={true}
+            isActive
+            hasDepartment
             name={"Maksim"}
             surName={"Razhnov"}
             avatar={avatar}
@@ -69,8 +69,8 @@ export const HeaderSuperAdmin = () => {
 export const HeaderAdmin = () => {
     return (
         <Header
-            isActive={true}
-            hasDepartment={true}
+            isActive
+            hasDepartment
             name={"Maksim"}
             surName={"Razhnov"}
             avatar={avatar}

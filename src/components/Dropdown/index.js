@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { find, isEmpty } from "lodash-es";
 import styles from "./scss/Dropdown.module.scss";
 import Button from "../Button";
-import { SELECT } from "../Button/constants";
+import { SELECT } from "../../constants";
 import { getSortedList } from "../../helpers/helpers";
 import { ReactComponent as DropdownArrowIcon } from "../../assets/icons/DropdownArrow.svg";
 
